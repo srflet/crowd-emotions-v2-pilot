@@ -1,19 +1,52 @@
 treatments:
-  - name: quickTest
+  - name: woc 2
     factorIds:
-      - pJSLJrip9ipnBLGe9
+      - 4Fh7F8W6eeXR6bXsD
+      - TaYNMYyEN4edFvdvK
+      - wWgDbQSxFrL3TDya6
 factorTypes:
-  - _id: kvgcxi23n2GW5G8ub
+  - _id: 3rWkkw8wLXxcqTJuL
     name: playerCount
     description: The Number of players participating in the given game.
     required: true
     type: Integer
     min: 1
+  - _id: mcapRg7t8WvPj9Fgd
+    name: nRounds
+    description: Number of rounds to play
+    required: true
+    type: Integer
+    min: 1
+  - _id: Zfvp6PRCPyE2hPs5k
+    name: condition
+    description: which condition is being conducted
+    required: true
+    type: String
 factors:
   - _id: pJSLJrip9ipnBLGe9
     name: one
     value: 1
-    factorTypeId: kvgcxi23n2GW5G8ub
+    factorTypeId: 3rWkkw8wLXxcqTJuL
+  - _id: TaYNMYyEN4edFvdvK
+    name: five
+    value: 5
+    factorTypeId: mcapRg7t8WvPj9Fgd
+  - _id: 9n5zwjsTNEpXwZ9vy
+    name: control
+    value: control
+    factorTypeId: Zfvp6PRCPyE2hPs5k
+  - _id: wWgDbQSxFrL3TDya6
+    name: wisdom_of_crowds
+    value: woc
+    factorTypeId: Zfvp6PRCPyE2hPs5k
+  - _id: 4Fh7F8W6eeXR6bXsD
+    name: two
+    value: 2
+    factorTypeId: 3rWkkw8wLXxcqTJuL
+  - _id: QbmC9g4sKGwgQR2xc
+    name: ten
+    value: 10
+    factorTypeId: 3rWkkw8wLXxcqTJuL
 lobbyConfigs:
   - name: neverfail
     timeoutType: lobby

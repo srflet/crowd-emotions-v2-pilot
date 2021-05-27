@@ -1,4 +1,4 @@
-# {{appName}}
+# Crowds, wisdom, and emotion
 
 _This project was generated with [create-empirica-app](https://github.com/empiricaly/create-empirica-app)._
 

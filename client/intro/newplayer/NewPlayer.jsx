@@ -22,7 +22,7 @@ export default class NewPlayer extends Component {
 
         return (
             <CenterDevWrapper {...this.props} >
-                <div >
+                <div className="container">
                     <form onSubmit={this.handleSubmit}>
                         <h1>Identification</h1>
 
@@ -44,7 +44,7 @@ export default class NewPlayer extends Component {
                         <br />
 
                         <p>
-                            <button type="submit">Submit</button>
+                            <button class="main-btn" type="submit">Submit</button>
                         </p>
 
                     </form>

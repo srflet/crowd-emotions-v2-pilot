@@ -2,6 +2,8 @@ import Empirica from "meteor/empirica:core"
 import "./bots.js"
 import "./callbacks.js"
 
+const isDev = true
+
 // gameInit is where the structure of a game is defined.
 // Just before every game starts, once all the players needed are ready, this
 // function is called with the treatment and the list of players.
@@ -15,12 +17,57 @@ Empirica.gameInit(game => {
 		player.set("score", 0)
 	})
 
-	_.times(10, i => {
-		const round = game.addRound()
-		round.addStage({
-			name: "response",
-			displayName: "Response",
-			durationInSeconds: 120
+	_.times(game.treatment.nRounds, i => {
+		const round = game.addRound({
+			data: {
+				roundIndex: i,
+				isPractice: i === 0
+			}
 		})
+
+		round.addStage({
+			name: "stimulus",
+			displayName: "Stimulus",
+			durationInSeconds: isDev ? 9999 : 1.8
+		})
+
+		round.addStage({
+			name: "rating",
+			displayName: "Rating",
+			durationInSeconds: 9999
+		})
+
+		round.addStage({
+			name: "social",
+			displayName: "Social",
+			durationInSeconds: 9999
+		})
+
+		if (i !== 0) {
+			round.addStage({
+				name: "rating",
+				displayName: "Rating",
+				durationInSeconds: 9999
+			})
+
+			round.addStage({
+				name: "social",
+				displayName: "Social",
+				durationInSeconds: 9999
+			})
+
+			round.addStage({
+				name: "rating",
+				displayName: "Rating",
+				durationInSeconds: 9999
+			})
+
+			round.addStage({
+				name: "debrief",
+				displayName: "Debrief",
+				durationInSeconds: 9999
+			})
+		}
+
 	})
 })
