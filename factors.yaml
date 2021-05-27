@@ -4,6 +4,11 @@ treatments:
       - 4Fh7F8W6eeXR6bXsD
       - TaYNMYyEN4edFvdvK
       - wWgDbQSxFrL3TDya6
+  - name: woc 10
+    factorIds:
+      - QbmC9g4sKGwgQR2xc
+      - TaYNMYyEN4edFvdvK
+      - wWgDbQSxFrL3TDya6
 factorTypes:
   - _id: 3rWkkw8wLXxcqTJuL
     name: playerCount

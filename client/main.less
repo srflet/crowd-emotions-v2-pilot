@@ -19,6 +19,10 @@
     width: 100%;
 }
 
+.title {
+	text-align: center;
+}
+
 /* --------
 - General -
 --------- */
@@ -65,4 +69,53 @@ input[type='checkbox'] {
 .container {
 	width: 100%;
 	max-width: 75ch;
+}
+
+/* ---------
+- Stimulus -
+---------- */
+
+.stimuli-holder {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+
+	background-color:#aaaaaa;
+
+	.stimulus-holder {
+		margin: 5px
+	}
+}
+
+/* -------
+- Social -
+------- */
+
+.social-holder {
+	display: flex;
+
+	margin-top: 1rem;
+
+	div {
+		width: 100%;
+	}
+}
+
+.social-response {
+	display: flex;
+	align-items: center;
+
+	padding: 0.5rem;
+
+	background-color: hsl(0, 0%, 95%);
+
+
+	p {
+		margin: 0 0 0 1rem;
+	}
+}
+
+.social-response-avatar {
+	width: 25px;
+	height: 25px;
 }

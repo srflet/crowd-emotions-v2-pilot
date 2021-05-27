@@ -1,27 +1,49 @@
+// Importing Empirica
 import Empirica from "meteor/empirica:core"
 import "./bots.js"
 import "./callbacks.js"
 
+// Importing helper functions for randomness
+import { choice, popChoice, shuffle } from './helper-functions/random';
+
+// Setting a variable for whether this is development/testing or not (determines the time set to the stages)
 const isDev = true
 
-// gameInit is where the structure of a game is defined.
-// Just before every game starts, once all the players needed are ready, this
-// function is called with the treatment and the list of players.
-// You must then add rounds and stages to the game, depending on the treatment
-// and the players. You can also get/set initial values on your game, players,
-// rounds and stages (with get/set methods), that will be able to use later in
-// the game.
+// When the game starts (intro steps have ended), set up the game
 Empirica.gameInit(game => {
 	game.players.forEach((player, i) => {
 		player.set("avatar", `/avatars/jdenticon/${player._id}`)
-		player.set("score", 0)
+		player.set("ratings", [...Array(game.treatment.nRounds + 1).keys()].map(value => "NA"))
 	})
 
-	_.times(game.treatment.nRounds, i => {
+	_.times(game.treatment.nRounds + 1, i => {
+
+		// Select the stimuli for the round
+		const personList = ["A", "B", "C", "D"]
+		const emotionList = ["sad", "happy", "angry"]
+
+		const emotionRange = {
+			sad: [1, 50],
+			happy: [51, 100],
+			angry: [101, 150]
+		}
+
+		const person = choice(personList)
+		const emotion = choice(emotionList)
+		const range = emotionRange[emotion]
+
+		const imgArraySize = _.random(1, 12)
+		const imgIndexes = [...Array(imgArraySize).keys()].map(i => _.random(range[0], range[1]))
+		const imgValues = imgIndexes.map(i => i - range[0])
+
+		const stimuliPaths = imgIndexes.map(i => "stimuli/" + person + i + ".jpg")
+
+		// Create the round and stages
 		const round = game.addRound({
 			data: {
 				roundIndex: i,
-				isPractice: i === 0
+				isPractice: i === 0,
+				stimConfig: { person, emotion, range, imgArraySize, imgIndexes, imgValues, stimuliPaths }
 			}
 		})
 
@@ -37,19 +59,22 @@ Empirica.gameInit(game => {
 			durationInSeconds: 9999
 		})
 
+		if (i !== 0) {
+			round.addStage({
+				name: "social",
+				displayName: "Social",
+				durationInSeconds: 9999
+			})
+		}
+
+
 		round.addStage({
-			name: "social",
-			displayName: "Social",
+			name: "rating",
+			displayName: "Rating",
 			durationInSeconds: 9999
 		})
 
 		if (i !== 0) {
-			round.addStage({
-				name: "rating",
-				displayName: "Rating",
-				durationInSeconds: 9999
-			})
-
 			round.addStage({
 				name: "social",
 				displayName: "Social",
@@ -63,8 +88,8 @@ Empirica.gameInit(game => {
 			})
 
 			round.addStage({
-				name: "debrief",
-				displayName: "Debrief",
+				name: "feedback",
+				displayName: "Feedback",
 				durationInSeconds: 9999
 			})
 		}
