@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Slider from "meteor/empirica:slider"
+import { Slider } from "@blueprintjs/core";
 
 export default class Rating extends Component {
 
@@ -19,7 +19,6 @@ export default class Rating extends Component {
         // Get the path
         const stimConfig = round.get("stimConfig")
         const path = `stimuli/${stimConfig.person}${-1 + rating + stimConfig.range[0]}.jpg`
-        console.log(path)
 
         return (
             <div>
