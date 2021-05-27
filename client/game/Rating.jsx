@@ -11,7 +11,7 @@ export default class Rating extends Component {
     }
 
     render() {
-        const { player, round } = this.props
+        const { player, round, stage } = this.props
 
         // Get rating
         const rating = player.get("ratings")[round.get("roundIndex")] === "NA" ? 1 : player.get("ratings")[round.get("roundIndex")]
@@ -38,12 +38,16 @@ export default class Rating extends Component {
                 />
                 <br />
                 {
+                    stage.get("isFinalRating") &&
+                    <BinaryChoice stimConfig={stimConfig} {...this.props} />
+                }
+                {
                     player.stage.submitted
                         ? <div className="title">Your rating has been submitted. Waiting for other players to submit...</div>
                         : <div className="flex-c">
                             <button
                                 className="main-btn"
-                                disabled={player.get("ratings")[round.get("roundIndex")] === "NA"}
+                                disabled={player.get("ratings")[round.get("roundIndex")] === "NA" || (stage.get("isFinalRating") && player.get("binaryChoice")[round.get("roundIndex")] === "NA")}
                                 onClick={() => player.stage.submit()}
                             >
                                 Submit
@@ -52,6 +56,44 @@ export default class Rating extends Component {
                 }
             </div>
 
+        )
+    }
+}
+
+class BinaryChoice extends Component {
+    handleChangeBinary = e => {
+        const { player, round } = this.props
+
+        // Get binaryChoice
+        const binaryChoice = player.get("binaryChoice")
+        // update value
+        binaryChoice[round.get("roundIndex")] = e.currentTarget.value
+        // set binary choice
+        player.set("binaryChoice", binaryChoice)
+
+    }
+
+    render() {
+        const { stimConfig } = this.props
+
+
+        return (
+            <>
+                <div className="binary-choice-holder">
+                    <p>If you had to choose one of the two emotions, which would would choose?</p>
+                    <p>
+                        <label className="my-radio">
+                            <input type="radio" name="binary-emotion" value="neutral" onChange={this.handleChangeBinary} /> neutral
+                    </label>
+                    </p>
+                    <p>
+                        <label className="my-radio">
+                            <input type="radio" name="binary-emotion" value={stimConfig.emotion} onChange={this.handleChangeBinary} /> {stimConfig.emotion}
+                        </label>
+                    </p>
+                </div>
+                <br />
+            </>
         )
     }
 }

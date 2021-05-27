@@ -7,10 +7,13 @@ export default class Social extends Component {
 
         // Calculate summary of ratings
         const otherRatings = otherPlayers.map(p => p.get("ratings")[round.get("roundIndex")]).filter(rating => rating !== "NA")
-        const sumRatings = otherRatings.reduce((total, item) => (total += item), 0)
         const min = Math.min(...otherRatings).toFixed(2)
-        const mean = (sumRatings / otherRatings.length).toFixed(2)
+        const mean = (otherRatings.reduce((total, item) => (total += item), 0) / otherRatings.length).toFixed(2)
         const max = Math.max(...otherRatings).toFixed(2)
+
+        // Get the path
+        const stimConfig = round.get("stimConfig")
+        const path = `stimuli/${stimConfig.person}${-1 + Math.round(mean) + stimConfig.range[0]}.jpg`
 
         return (
             <div>
@@ -18,13 +21,17 @@ export default class Social extends Component {
                 <br />
                 <div className="social-holder">
                     <div className="social-summary">
-                        <p className="title"><strong>Summary</strong></p>
+                        <p className="title"><strong>Summary:</strong></p>
                         <p>Min of other players: <strong>{min}</strong></p>
                         <p>Mean of other players: <strong>{mean}</strong></p>
                         <p>Max of other players: <strong>{max}</strong></p>
+                        <div className="title">
+                            <p><strong>Average morphed face from other players:</strong></p>
+                            <img src={path} alt="image of morphed face" />
+                        </div>
                     </div>
                     <div className="social-responses">
-                        <p className="title"><strong>Other players' responses</strong></p>
+                        <p className="title"><strong>Other players' responses:</strong></p>
                         {otherPlayers.map((p, i) => {
                             return <SocialResponse key={i} p={p} {...this.props} />
                         })}

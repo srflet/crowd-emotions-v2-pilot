@@ -12,15 +12,11 @@ export default class Stimulus extends Component {
                             <div key={index} className="stimulus-holder">
                                 <img
                                     src={path}
-                                    alt=""
-                                    width={`${141 * 0.5}px`}
-                                    height={`${181 * 0.5}px`}
+                                    style={round.get("arrayStyles")[index]}
                                 />
                             </div>
-
                         )
                     })}
-
                 </div>
             </div>
         )

@@ -1,6 +1,16 @@
 /* ----------
 - Variables -
 ----------- */
+@main-color: 120;
+@main-color-100: hsl(@main-color, 65%, 10%);
+@main-color-200: hsl(@main-color, 65%, 20%);
+@main-color-300: hsl(@main-color, 65%, 30%);
+@main-color-400: hsl(@main-color, 65%, 40%);
+@main-color-500: hsl(@main-color, 65%, 50%);
+@main-color-700: hsl(@main-color, 65%, 70%);
+@main-color-850: hsl(@main-color, 65%, 85%);
+@main-color-900: hsl(@main-color, 65%, 90%);
+@main-color-950: hsl(@main-color, 65%, 95%);
 
 /* ------
 - Utils -
@@ -32,6 +42,9 @@
 .main-btn {
 	min-width: 80px;
 	padding: 0.75rem 1rem;
+
+	background-color: @main-color-200;
+	color: white;
   
 	border: none;
 	border-radius: 5px;
@@ -44,10 +57,13 @@
 }
 
 .main-btn:hover {
+	background-color: @main-color-400;
 }
 
 .main-btn:disabled {
-	cursor: inherit;	
+	cursor: inherit;
+	background-color: @main-color-850;	
+	color: hsl(0, 0%, 50%)
 }
 
 // inputs
@@ -60,8 +76,22 @@
 	margin-top: 8px;
 }
 
-input[type='checkbox'] {
+input[type='checkbox'], input[type='radio'] {
 	cursor: pointer;
+}
+
+.my-radio {
+	cursor: pointer;
+		
+	input[type="radio"] {
+
+		height: 100%;
+		margin-top: -1px;
+		vertical-align: middle;
+
+		transform: scale(1.5);
+		margin-right: 0.5rem;
+  }
 }
 
 // Text
@@ -76,16 +106,37 @@ input[type='checkbox'] {
 ---------- */
 
 .stimuli-holder {
+	width: 100%;
+	padding: 1rem;
+
 	display: flex;
+	align-items: center;
 	justify-content: center;
 	flex-wrap: wrap;
 
 	background-color:#aaaaaa;
 
 	.stimulus-holder {
-		margin: 5px
+		position: relative;
+		width: 120px;
+		height: 100px;
+		
+		img {
+			position: absolute;
+		}
 	}
 }
+
+/* -------
+- Rating -
+------- */
+
+// .binary-choice-holder {
+
+// 	label {
+// 		margin-left: 40%;
+// 	}
+// }
 
 /* -------
 - Social -

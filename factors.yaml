@@ -9,8 +9,13 @@ treatments:
       - QbmC9g4sKGwgQR2xc
       - TaYNMYyEN4edFvdvK
       - wWgDbQSxFrL3TDya6
+  - name: control 2
+    factorIds:
+      - 4Fh7F8W6eeXR6bXsD
+      - TaYNMYyEN4edFvdvK
+      - 9n5zwjsTNEpXwZ9vy
 factorTypes:
-  - _id: 3rWkkw8wLXxcqTJuL
+  - _id: Seaes4nCm5o49STh4
     name: playerCount
     description: The Number of players participating in the given game.
     required: true
@@ -31,7 +36,7 @@ factors:
   - _id: pJSLJrip9ipnBLGe9
     name: one
     value: 1
-    factorTypeId: 3rWkkw8wLXxcqTJuL
+    factorTypeId: Seaes4nCm5o49STh4
   - _id: TaYNMYyEN4edFvdvK
     name: five
     value: 5
@@ -47,11 +52,11 @@ factors:
   - _id: 4Fh7F8W6eeXR6bXsD
     name: two
     value: 2
-    factorTypeId: 3rWkkw8wLXxcqTJuL
+    factorTypeId: Seaes4nCm5o49STh4
   - _id: QbmC9g4sKGwgQR2xc
     name: ten
     value: 10
-    factorTypeId: 3rWkkw8wLXxcqTJuL
+    factorTypeId: Seaes4nCm5o49STh4
 lobbyConfigs:
   - name: neverfail
     timeoutType: lobby
