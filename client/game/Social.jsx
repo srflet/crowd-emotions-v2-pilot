@@ -17,16 +17,18 @@ export default class Social extends Component {
 
         return (
             <div>
-                <p className="title"><strong>Information from other players</strong></p>
-                <br />
+                <p>
+                    Please see below for the ratings given by {otherPlayers.length} other participants in this session. They saw the exact same group of faces as you did, and these ratings are real-time data.
+                </p>
                 <div className="social-holder">
-                    <div className="social-summary">
-                        <p className="title"><strong>Summary:</strong></p>
+                    <div className="social-summary title">
+                        <p><strong>Summary:</strong></p>
                         <p>Min of other players: <strong>{min}</strong></p>
                         <p>Mean of other players: <strong>{mean}</strong></p>
                         <p>Max of other players: <strong>{max}</strong></p>
-                        <div className="title">
-                            <p><strong>Average morphed face from other players:</strong></p>
+                        <br />
+                        <div>
+                            <p><strong>Average face created from the ratings of the other players:</strong></p>
                             <img src={path} alt="image of morphed face" />
                         </div>
                     </div>
@@ -40,7 +42,7 @@ export default class Social extends Component {
                 <br />
                 {
                     player.stage.submitted
-                        ? <div className="title">Waiting for the other players...</div>
+                        ? <div className="title waiting-msg">Waiting for the other players...</div>
                         : <div className="flex-c"><button className="main-btn" onClick={() => player.stage.submit()}>Continue</button></div>
                 }
             </div>

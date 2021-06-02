@@ -17,11 +17,18 @@ Empirica.gameInit(game => {
 		player.set("binaryChoice", [...Array(game.treatment.nRounds + 1).keys()].map(value => "NA"))
 	})
 
+	const trueAnswers = []
+
 	_.times(game.treatment.nRounds + 1, i => {
 
 		// Select the stimuli for the round
 		const personList = ["A", "B", "C", "D"]
 		const emotionList = ["sad", "happy", "angry"]
+		const emotionAdjectives = {
+			sad: "sadness",
+			happy: "happiness",
+			angry: "anger"
+		}
 
 		const emotionRange = {
 			sad: [1, 50],
@@ -31,6 +38,7 @@ Empirica.gameInit(game => {
 
 		const person = choice(personList)
 		const emotion = choice(emotionList)
+		const emotionAdj = emotionAdjectives[emotion]
 		const range = emotionRange[emotion]
 
 		const imgArraySize = _.random(8, 12)
@@ -38,13 +46,14 @@ Empirica.gameInit(game => {
 		const imgValues = imgIndexes.map(i => i - range[0])
 
 		const imgMean = Math.round(imgValues.reduce((total, item) => (total += item), 0) / imgValues.length)
+		trueAnswers.push(imgMean)
 
 		const stimuliPaths = imgIndexes.map(i => "stimuli/" + person + i + ".jpg")
 
 		const arrayStyles = imgValues.map(value => {
 			// calculate size and the positions
-			const width = 141 * 0.33
-			const height = 181 * 0.33
+			const width = 141 * 0.5
+			const height = 181 * 0.5
 			return {
 				width: `${width}px`,
 				height: `${height}px`,
@@ -58,7 +67,7 @@ Empirica.gameInit(game => {
 			data: {
 				roundIndex: i,
 				isPractice: i === 0,
-				stimConfig: { person, emotion, range, imgArraySize, imgIndexes, imgValues, imgMean, stimuliPaths },
+				stimConfig: { person, emotion, emotionAdj, range, imgArraySize, imgIndexes, imgValues, imgMean, stimuliPaths },
 				arrayStyles
 			}
 		})
@@ -67,13 +76,13 @@ Empirica.gameInit(game => {
 		round.addStage({
 			name: "stimulus",
 			displayName: "Stimulus",
-			durationInSeconds: isDev ? 9999 : 1.5
+			durationInSeconds: isDev ? 9999 : 30
 		})
 
 		round.addStage({
 			name: "rating",
 			displayName: "Rating",
-			durationInSeconds: 9999
+			durationInSeconds: isDev ? 9999 : 30
 		})
 
 		// No social stage in the practice NOR in the control
@@ -81,7 +90,7 @@ Empirica.gameInit(game => {
 			round.addStage({
 				name: "social",
 				displayName: "Social",
-				durationInSeconds: 9999
+				durationInSeconds: isDev ? 9999 : 30
 			})
 		}
 
@@ -89,13 +98,13 @@ Empirica.gameInit(game => {
 		round.addStage({
 			name: "stimulus",
 			displayName: "Stimulus",
-			durationInSeconds: isDev ? 9999 : 1.5
+			durationInSeconds: isDev ? 9999 : 30
 		})
 
 		round.addStage({
 			name: "rating",
 			displayName: "Rating",
-			durationInSeconds: 9999
+			durationInSeconds: isDev ? 9999 : 30
 		})
 
 		// No social stage in the practice NOR in the control
@@ -103,7 +112,7 @@ Empirica.gameInit(game => {
 			round.addStage({
 				name: "social",
 				displayName: "Social",
-				durationInSeconds: 9999
+				durationInSeconds: isDev ? 9999 : 30
 			})
 		}
 
@@ -112,24 +121,20 @@ Empirica.gameInit(game => {
 			round.addStage({
 				name: "stimulus",
 				displayName: "Stimulus",
-				durationInSeconds: isDev ? 9999 : 1.5
+				durationInSeconds: isDev ? 9999 : 30
 			})
 
 			round.addStage({
 				name: "rating",
 				displayName: "Rating",
-				durationInSeconds: 9999,
+				durationInSeconds: isDev ? 9999 : 30,
 				data: {
 					isFinalRating: true
 				}
 			})
-
-			round.addStage({
-				name: "feedback",
-				displayName: "Feedback",
-				durationInSeconds: 9999
-			})
 		}
 
 	})
+
+	game.set("trueAnswers", trueAnswers)
 })

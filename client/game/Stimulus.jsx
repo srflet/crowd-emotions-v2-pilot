@@ -1,12 +1,18 @@
 import React, { Component } from 'react'
+import { StageTimeWrapper } from "meteor/empirica:core"
 
-export default class Stimulus extends Component {
+class StimulusBuilder extends Component {
+
     render() {
-        const { round } = this.props
+        const { round, stage, remainingSeconds } = this.props
+        const stimConfig = round.get("stimConfig")
+
         return (
             <div>
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quia, ducimus sunt nam esse est distinctio, praesentium quasi tempora neque laborum nesciunt laboriosam cumque! Deserunt quidem similique ut ipsa neque provident?</p>
-                <div className="stimuli-holder">
+                <p>{this.props.remainingSeconds}</p>
+                <p>Below, we are going to show you a group of photographs for 1.5 seconds.</p>
+                <p>Then we will ask you the average level of {stimConfig.emotionAdj} in these faces.</p>
+                <div className={`stimuli-holder ${(remainingSeconds * 1000) > 1500 && "hidden-stimuli"}`}>
                     {round.get("stimConfig").stimuliPaths.map((path, index) => {
                         return (
                             <div key={index} className="stimulus-holder">
@@ -22,3 +28,6 @@ export default class Stimulus extends Component {
         )
     }
 }
+
+// Export this awith the stage time wrapper that makes it a timer
+export default (Stimulus = StageTimeWrapper(StimulusBuilder));

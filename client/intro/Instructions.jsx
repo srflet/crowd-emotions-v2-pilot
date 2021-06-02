@@ -10,7 +10,32 @@ export default class Instructions extends Component {
                 <div className="container">
                     <h2>Instructions</h2>
 
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio illo assumenda suscipit hic neque doloremque. Voluptatem fuga, optio iusto dolore minima, provident cum a, ex magni voluptate inventore eum voluptatibus?</p>
+                    <p>
+                        Welcome to our study! Today, we are going to ask you to evaluate emotions of people’s faces. Below is a summary of the study’s procedure. Please read this carefully.
+                    </p>
+
+                    <p>
+                        We will do a practice round next. Details about bonus will be explained after the practice round.
+                    </p>
+                    <ol className="instructions-list">
+                        <li>
+                            On the screen, you will briefly see a group of facial photographs. These photographs are of the same person, but with different emotions. For instance, in the example below, some faces are angrier than others.
+                        </li>
+                        <div className="instructions-image"><img src="instructions/instructions1.png" /></div>
+                        <li>
+                            You will evaluate the AVERAGE EMOTION of this group of photographs. For the example above, we will ask you “what is the average anger level of this group of faces?”
+                        </li>
+                        <li>
+                            To respond, you will have a slider where you can indicate your response on a scale of 1 (not angry) to 50 (very angry).
+                        </li>
+                        <li>
+                            We will show you this group of photographs two more times where you can also revise your answers two more times.
+                        </li>
+                        <li>
+                            Then we will move onto the next group of faces. In this study, there are in total 5 group of faces.
+                        </li>
+                    </ol>
+
 
                     <br />
                     <div className="flex-c multiple-btns">

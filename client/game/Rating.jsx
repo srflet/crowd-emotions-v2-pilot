@@ -22,8 +22,10 @@ export default class Rating extends Component {
 
         return (
             <div>
+                <p>Please indicate the average level of {stimConfig.emotionAdj} in this group of faces. To give your response, drag the slider left (less {stimConfig.emotion}) and right (more {stimConfig.emotion}), and you will change the {stimConfig.emotionAdj} level of this person’s face.</p>
+                <p>Once you are satisfied with your response, please click next.</p>
+                <br />
                 <div className="title">
-                    <p><strong>Please rate the faces</strong></p>
                     <img src={path} alt="image of morphed face" />
                 </div>
                 <br />
@@ -43,14 +45,14 @@ export default class Rating extends Component {
                 }
                 {
                     player.stage.submitted
-                        ? <div className="title">Your rating has been submitted. Waiting for other players to submit...</div>
+                        ? <div className="title waiting-msg">Your rating has been submitted. Waiting for other players to submit...</div>
                         : <div className="flex-c">
                             <button
                                 className="main-btn"
                                 disabled={player.get("ratings")[round.get("roundIndex")] === "NA" || (stage.get("isFinalRating") && player.get("binaryChoice")[round.get("roundIndex")] === "NA")}
                                 onClick={() => player.stage.submit()}
                             >
-                                Submit
+                                Next
                         </button>
                         </div>
                 }

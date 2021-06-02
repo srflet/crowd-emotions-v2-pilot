@@ -5,7 +5,7 @@ class timer extends React.Component {
 	render() {
 		const { remainingSeconds } = this.props
 
-		const classes = ["timer"]
+		const classes = ["timer flex-col"]
 		if (remainingSeconds <= 5) {
 			classes.push("lessThan5")
 		} else if (remainingSeconds <= 10) {
@@ -13,10 +13,9 @@ class timer extends React.Component {
 		}
 
 		return (
-			<div className={classes.join(" ")}>
-				<h4>Timer</h4>
-				<span className="seconds">{remainingSeconds}</span>
-			</div>
+			<span className="timer">
+				{remainingSeconds}
+			</span>
 		)
 	}
 }

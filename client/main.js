@@ -4,13 +4,12 @@ import { render } from "react-dom"
 // Import components
 import Consent from "./intro/consent/Consent"
 import NewPlayer from "./intro/newplayer/NewPlayer"
-
+import Instructions from "./intro/Instructions"
+import Comprehension from "./intro/Comprehension"
 import Round from "./game/Round"
-
 import ExitSurvey from "./exit/ExitSurvey"
 import Thanks from "./exit/Thanks"
 import Sorry from "./exit/Sorry"
-import Instructions from "./intro/Instructions"
 
 // Take out elements of the header:
 // Set the About Component you want to use for the About dialog (optional).
@@ -34,7 +33,7 @@ if (!isDev) {
 	// At this point they have been assigned a treatment. You can return
 	// different instruction steps depending on the assigned treatment.
 	Empirica.introSteps((game, treatment) => {
-		return [Instructions]
+		return [Instructions, Comprehension]
 	})
 }
 

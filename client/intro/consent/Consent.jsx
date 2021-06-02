@@ -7,59 +7,54 @@ export default class Consent extends React.Component {
 		return (
 			<CenterDevWrapper {...this.props}>
 				<div className="container">
-					<h2 className="title">Consent to Participate</h2>
-					<p><strong>Title of the study:</strong></p>
-					<p><strong>Department:</strong></p>
-					<p><strong>Name and Contact Details of Primary Researcher:</strong></p>
-
-					<h3>Purpose of the Study</h3>
-					<p></p>
-
-					<h3>Why have I been invited to participate?</h3>
+					<h2 className="title">Informed Consent</h2>
 					<p>
-						We are inviting you to participate in this study because you are at least 18 years old, speak English, and able to give informed consent.
+						The purpose of this research is to examine emotional recognition. We kindly ask you to participate in an emotion recognition game where you estimate the emotionality of a group of images of people. The entire study should take no more than 20 mins. The principal investigator of this study is Professor Tom Taiyi Yan at University College London, School of Management, and Professor Amit Goldberg from Harvard Business School.
 					</p>
 
-					<h3>Do I have to participate?</h3>
+					<h3>Data Security</h3>
 					<p>
-						Participation in this study is entirely voluntary. You may withdraw participation at any time for any reason.
+						Your data are being securely held and your responses to this survey remain strictly private. No identifying information about you (or your answers to specific questions we ask you) will ever be freely shared or presented in the results of this research.
 					</p>
 
-					<h3>What will happen to me if I take part?</h3>
-					<p></p>
-
-					<h3>What are the possible disadvantages and risks of taking part?</h3>
+					<h3>Benefits</h3>
 					<p>
-						There are no risks or discomforts associated with participating in this research study.
+						You will receive XX GBP as base compensation for participation. There is a bonus component up to 100% of the base pay, based on your performance in the game (i.e., how accurately you are able to identify emotions).
+					</p>
+					<p>
+						A further benefit of participating in this research is that you are contributing to the advancement of social science.
 					</p>
 
-					<h3>What are the possible benefits of taking part?</h3>
-					<p></p>
-
-					<h3>What if something goes wrong?</h3>
-					<p></p>
-
-					<h3>Will my taking part in this study be kept confidential?</h3>
-					<p></p>
-
-					<h3>What will happen to the results of this research project?</h3>
+					<h3>Confidentiality</h3>
 					<p>
-						Once the data is anonymised and analysed, it might be reported in academic publications or made openly available for other researchers on platforms such as GitHub or OSF.
+						Any identifying information will be replaced with a random number in our data file. The data file is password-protected and accessible only by the immediate research team. No identifying information will ever be presented in the results of this research.
 					</p>
 
-					<h3>Local Data Protection Privacy Notice</h3>
+					<h3>Dissemination of Results</h3>
 					<p>
-						All collected data will be anonymized.
+						No information that could identify your specific responses in this study will be presented in any discussions, publications or presentations that result from this research.
+					</p>
+
+					<h3>Withdrawing from the Study</h3>
+					<p>
+						You are free to withdraw at any time without penalty or the loss of benefits to which you would otherwise be entitled.
+					</p>
+
+					<h3>Possible Risks</h3>
+					<p>
+						There are no foreseeable risks beyond those present in routine daily life anticipated in this study.
 					</p>
 
 					<h3>Statement of Consent</h3>
 					<p>
-						By clicking "I consent" below, you agree that you are at least 18 years of age, speak English, have read the consent form, and voluntarily agree to participate in the study. You may print a copy of this page for your own reference. <br />
-						If you do not consent to participate, please simply exit the study now.
+						By clicking on the CONTINUE button below, you are providing your informed consent to participate in the current research. As always, you are free to discontinue your participation at any time without penalty or the loss of benefits to which you are otherwise entitled.
+					</p>
+					<p>
+						If you have any questions about this research, please feel free to contact the lead investigator, Professor Thomas Taiyi Yan, tom.taiyi.yan@ucl.ac.uk.
 					</p>
 
 					<br />
-					<div className="flex-c"><ConsentButton text="I CONSENT" /></div>
+					<div className="flex-c"><ConsentButton text="CONTINUE" /></div>
 				</div>
 			</CenterDevWrapper>
 		)
