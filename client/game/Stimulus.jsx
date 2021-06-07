@@ -9,7 +9,6 @@ class StimulusBuilder extends Component {
 
         return (
             <div>
-                <p>{this.props.remainingSeconds}</p>
                 <p>Below, we are going to show you a group of photographs for 1.5 seconds.</p>
                 <p>Then we will ask you the average level of {stimConfig.emotionAdj} in these faces.</p>
                 <div className={`stimuli-holder ${(remainingSeconds * 1000) > 1500 && "hidden-stimuli"}`}>

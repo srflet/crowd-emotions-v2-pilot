@@ -14,9 +14,6 @@ export default class Instructions extends Component {
                         Welcome to our study! Today, we are going to ask you to evaluate emotions of people’s faces. Below is a summary of the study’s procedure. Please read this carefully.
                     </p>
 
-                    <p>
-                        We will do a practice round next. Details about bonus will be explained after the practice round.
-                    </p>
                     <ol className="instructions-list">
                         <li>
                             On the screen, you will briefly see a group of facial photographs. These photographs are of the same person, but with different emotions. For instance, in the example below, some faces are angrier than others.

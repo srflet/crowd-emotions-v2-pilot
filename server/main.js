@@ -76,7 +76,7 @@ Empirica.gameInit(game => {
 		round.addStage({
 			name: "stimulus",
 			displayName: "Stimulus",
-			durationInSeconds: isDev ? 9999 : 30
+			durationInSeconds: isDev ? 9999 : 10
 		})
 
 		round.addStage({
@@ -98,7 +98,7 @@ Empirica.gameInit(game => {
 		round.addStage({
 			name: "stimulus",
 			displayName: "Stimulus",
-			durationInSeconds: isDev ? 9999 : 30
+			durationInSeconds: isDev ? 9999 : 10
 		})
 
 		round.addStage({
@@ -121,7 +121,7 @@ Empirica.gameInit(game => {
 			round.addStage({
 				name: "stimulus",
 				displayName: "Stimulus",
-				durationInSeconds: isDev ? 9999 : 30
+				durationInSeconds: isDev ? 9999 : 10
 			})
 
 			round.addStage({
@@ -131,6 +131,13 @@ Empirica.gameInit(game => {
 				data: {
 					isFinalRating: true
 				}
+			})
+		} else {
+			// step between the practice and no practice
+			round.addStage({
+				name: "practiceEnd",
+				displayName: "End of Practice Round",
+				durationInSeconds: isDev ? 9999 : 30,
 			})
 		}
 

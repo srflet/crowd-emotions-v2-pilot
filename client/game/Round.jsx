@@ -4,6 +4,7 @@ import Stimulus from "./Stimulus.jsx"
 import Rating from "./Rating.jsx"
 import Social from "./Social.jsx"
 import Timeline from "./timeline/Timeline"
+import PracticeEnd from './PracticeEnd.jsx'
 
 export default class Round extends Component {
 
@@ -21,6 +22,8 @@ export default class Round extends Component {
 		if (stage.name === "social") {
 			return <Social {...this.props} />
 		}
+
+		return <PracticeEnd {...this.props} />
 	}
 
 	render() {
