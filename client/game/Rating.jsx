@@ -8,6 +8,7 @@ export default class Rating extends Component {
         const ratings = player.get("ratings")
         ratings[round.get("roundIndex")] = value
         player.set("ratings", ratings)
+        player.stage.set("rating", value)
     }
 
     render() {
