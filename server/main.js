@@ -23,7 +23,8 @@ Empirica.gameInit(game => {
 
 		// Select the stimuli for the round
 		const personList = ["A", "B", "C", "D"]
-		const emotionList = ["sad", "happy", "angry"]
+		// const emotionList = ["sad", "happy", "angry"]
+		const emotionList = ["happy", "angry"]
 		const emotionAdjectives = {
 			sad: "sadness",
 			happy: "happiness",
