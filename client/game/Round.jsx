@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import CenterDevWrapper from "../wrappers/CenterDevWrapper.jsx"
 import Stimulus from "./Stimulus.jsx"
-import Rating from "./Rating.jsx"
+import Rating from "./rating/Rating.jsx"
 import Social from "./Social.jsx"
 import Timeline from "./timeline/Timeline"
 import PracticeEnd from './PracticeEnd.jsx'
