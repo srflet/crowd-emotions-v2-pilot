@@ -53,8 +53,8 @@ Empirica.gameInit(game => {
 
 		const arrayStyles = imgValues.map(value => {
 			// calculate size and the positions
-			const width = 141 * 0.5
-			const height = 181 * 0.5
+			const width = 141 * 0.75
+			const height = 181 * 0.75
 			return {
 				width: `${width}px`,
 				height: `${height}px`,

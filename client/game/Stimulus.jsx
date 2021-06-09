@@ -3,16 +3,45 @@ import { StageTimeWrapper } from "meteor/empirica:core"
 
 class StimulusBuilder extends Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            timed: 0,
+            show: false
+        };
+        this.timer = null;
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.timer);
+    }
+
     render() {
         const { round, stage, remainingSeconds } = this.props
         const stimConfig = round.get("stimConfig")
+
+        if (remainingSeconds <= 5 && this.timer === null) {
+            this.setState({ show: true })
+
+            this.timer = setInterval(() => {
+                let timed = this.state.timed + 500
+
+                if (timed >= 1500) {
+                    this.setState({ show: false })
+                    clearInterval(this.timer)
+                } else {
+                    this.setState({ timed: timed })
+                }
+
+            }, 500);
+        }
 
         return (
             <div>
                 <p>Below, we are going to show you a group of photographs for 1.5 seconds.</p>
                 <p>Then we will ask you the average level of {stimConfig.emotionAdj} in these faces.</p>
-                <div className={`stimuli-holder ${(remainingSeconds * 1000) > 1500 && "hidden-stimuli"}`}>
-                    {round.get("stimConfig").stimuliPaths.map((path, index) => {
+                <div className={`stimuli-holder ${!this.state.show && "hidden-stimuli"}`}>
+                    {stimConfig.stimuliPaths.map((path, index) => {
                         return (
                             <div key={index} className="stimulus-holder">
                                 <img
