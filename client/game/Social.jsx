@@ -23,7 +23,11 @@ export default class Social extends Component {
                 <br />
                 <div className="social-summary title">
                     <p><strong>Average face created from the ratings of the other players:</strong></p>
-                    <img src={path} alt="image of morphed face" />
+                    {
+                        isNaN(mean)
+                            ? <span>No answers provided by the other players</span>
+                            : <img src={path} alt="image of morphed face" />
+                    }
                 </div>
                 <br />
                 <p className="title"><strong>Other players' responses:</strong></p>
@@ -51,7 +55,10 @@ class SocialResponse extends Component {
         return (
             <div className="social-response title">
                 <p>Player {index + 1}</p>
-                <img src={path} alt="other-player-response" />
+                {p.get("ratings")[round.get("roundIndex")] === "NA"
+                    ? <span>{p.get("ratings")[round.get("roundIndex")]}</span>
+                    : <img src={path} alt="other-player-response" />
+                }
             </div>
         )
     }

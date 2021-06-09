@@ -59,7 +59,7 @@ Empirica.gameInit(game => {
 				width: `${width}px`,
 				height: `${height}px`,
 				left: `calc(50% - ${width / 2}px ${_.random(0, 1) === 1 ? "+" : "-"} ${_.random(0, 20)}px)`,
-				top: `calc(50% - ${height / 2}px ${_.random(0, 1) === 1 ? "+" : "-"} ${_.random(0, 20)}px)`
+				top: `calc(50% - ${height / 2}px ${_.random(0, 1) === 1 ? "+" : "-"} ${_.random(0, 15)}px)`
 			}
 		})
 
