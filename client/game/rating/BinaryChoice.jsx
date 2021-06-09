@@ -14,7 +14,7 @@ export default class BinaryChoice extends Component {
         return (
             <>
                 <div className="binary-choice-holder">
-                    <p>If you had to choose one of the two emotions, which would would choose?</p>
+                    <p className="title"><strong>If you had to choose, which of the two emotions would you choose?</strong></p>
                     <p>
                         <label className="my-radio">
                             <input type="radio" name="binary-emotion" value="neutral" onChange={this.handleChangeBinary} /> neutral

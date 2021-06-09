@@ -23,7 +23,7 @@ Empirica.header(() => null)
 Empirica.newPlayer(NewPlayer)
 
 // Using isDev to help with quick testing
-const isDev = true
+const isDev = false
 
 if (!isDev) {
 	// Set the Consent Component you want to present players (optional).
