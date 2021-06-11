@@ -25,7 +25,6 @@ export default class Rating extends Component {
 
         // Get disable condition
         const disabledCondition = player.get("ratings")[round.get("roundIndex")] === "NA" ||
-            (stage.get("isFinalRating") && !player.stage.get("confidence-rating")) ||
             (stage.get("isFinalRating") && !player.stage.get("binaryChoice"))
 
         return (
@@ -45,13 +44,11 @@ export default class Rating extends Component {
                         showTrackFill={false}
                     />
                 </div>
-                <p className="rating-labels"><span>less {stimConfig.emotion}</span><span>more {stimConfig.emotion}</span></p>
+                <p className="rating-labels"><span>neutral</span><span>very {stimConfig.emotion}</span></p>
                 <br />
                 {
                     stage.get("isFinalRating") &&
                     <div>
-                        <ConfidenceRating {...this.props} />
-                        <br />
                         <BinaryChoice stimConfig={stimConfig} {...this.props} />
                         <br />
                     </div>

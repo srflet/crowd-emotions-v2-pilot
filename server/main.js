@@ -14,7 +14,6 @@ Empirica.gameInit(game => {
 	game.players.forEach((player, i) => {
 		player.set("avatar", `/avatars/jdenticon/${player._id}`)
 		player.set("ratings", [...Array(game.treatment.nRounds + 1).keys()].map(value => "NA"))
-		player.set("binaryChoice", [...Array(game.treatment.nRounds + 1).keys()].map(value => "NA"))
 	})
 
 	const trueAnswers = []
@@ -118,22 +117,23 @@ Empirica.gameInit(game => {
 		}
 
 		// Step 3 (no more practice):
-		if (i !== 0) {
-			round.addStage({
-				name: "stimulus",
-				displayName: "Stimulus",
-				durationInSeconds: isDev ? 9999 : 10
-			})
+		round.addStage({
+			name: "stimulus",
+			displayName: "Stimulus",
+			durationInSeconds: isDev ? 9999 : 10
+		})
 
-			round.addStage({
-				name: "rating",
-				displayName: "Rating",
-				durationInSeconds: isDev ? 9999 : 30,
-				data: {
-					isFinalRating: true
-				}
-			})
-		} else {
+		round.addStage({
+			name: "rating",
+			displayName: "Rating",
+			durationInSeconds: isDev ? 9999 : 30,
+			data: {
+				isFinalRating: true
+			}
+		})
+
+		if (i === 0) {
+
 			// step between the practice and no practice
 			round.addStage({
 				name: "practiceEnd",

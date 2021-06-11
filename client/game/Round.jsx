@@ -31,7 +31,6 @@ export default class Round extends Component {
 
 		return (
 			<CenterDevWrapper {...this.props}>
-				<button onClick={player.stage.submit}>cheat</button>
 				<div className="round-holder">
 					<Timeline {...this.props} />
 					<div className="container">

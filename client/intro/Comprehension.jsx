@@ -81,7 +81,7 @@ export default class Comprehension extends Component {
                         <br />
                         <div className="flex-c multiple-btns">
                             <button className="main-btn" disabled={!hasPrev} onClick={onPrev}>Previous</button>
-                            <button className="main-btn" type="submit">Submit and start the study</button>
+                            <button className="main-btn" type="submit">Submit and start the practice</button>
                         </div>
                     </form>
                 </div>

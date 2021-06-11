@@ -11,6 +11,15 @@ export default class Thanks extends React.Component {
 		}
 
 		const ratings = player.get("ratings")
+		const trueAnswers = game.get("trueAnswers")
+
+		const totalError = trueAnswers
+			.map((trueAnswer, index) => {
+				return Math.abs(trueAnswer - ratings[index])
+			})
+			.reduce((total, item) => (total += item), 0)
+
+		const averageError = (totalError / trueAnswers.length).toFixed(2)
 
 		return (
 			<CenterDevWrapper {...this.props}>
@@ -19,12 +28,17 @@ export default class Thanks extends React.Component {
 					<p>
 						Thank you for completing the study! Below are your scores. Please allow us 10 business days to process your bonus payment.
 					</p>
+
+					<br />
+					<h3>Feedback about your performance</h3>
+					<p>Your average absolute error was {averageError}, the lower the better.</p>
+					<p>Here is a breakdwon per round:</p>
 					<div className="feedbackHolder">
-						{game.get("trueAnswers").map((trueAnswer, index) => {
+						{trueAnswers.map((trueAnswer, index) => {
 							if (index > 0) {
 								return (
 									<div key={index} className={index === 1 ? "firstRound" : ""}>
-										<p>Round {index}</p>
+										<p><u>Round {index}</u></p>
 										<p>True Answer: {trueAnswer}</p>
 										<p>Your Answer: {ratings[index]}</p>
 										<p className="m0">Absolute error: {Math.abs(trueAnswer - ratings[index])}</p>
@@ -33,8 +47,17 @@ export default class Thanks extends React.Component {
 							}
 						})}
 					</div>
+
+					<br />
+					<h3>Completing this study</h3>
 					<p>
 						If you have any questions about the study, or the payment. Please feel free to write to the principal investigator Professor Tom Taiyi Yan at tom.taiyi.yan@ucl.ac.uk.
+					</p>
+					<br />
+					<p className="flex-c">
+						<button className="main-btn" onClick={() => { window.location = "https://app.prolific.co/submissions/complete?cc=19B4F87E" }}>
+							Complete study on Prolific
+						</button>
 					</p>
 				</div>
 			</CenterDevWrapper>

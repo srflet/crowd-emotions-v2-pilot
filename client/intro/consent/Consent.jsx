@@ -1,15 +1,28 @@
 import React from "react"
 import { ConsentButton } from "meteor/empirica:core"
 import CenterDevWrapper from "../../wrappers/CenterDevWrapper"
+import { isMobile, isFirefox, isChrome } from 'react-device-detect'
 
 export default class Consent extends React.Component {
 	render() {
+
+		if (!(!isMobile && (isFirefox || isChrome))) {
+			return (
+				<CenterDevWrapper {...this.props}>
+					<div className="container">
+						Please use a computer and use Firefox or Chrome.
+					</div>
+				</CenterDevWrapper>
+			)
+		}
+
+
 		return (
 			<CenterDevWrapper {...this.props}>
 				<div className="container">
 					<h2 className="title">Informed Consent</h2>
 					<p>
-						The purpose of this research is to examine emotional recognition. We kindly ask you to participate in an emotion recognition game where you estimate the emotionality of a group of images of people. The entire study should take no more than 20 mins. The principal investigator of this study is Professor Tom Taiyi Yan at University College London, School of Management, and Professor Amit Goldberg from Harvard Business School.
+						The purpose of this research is to examine emotional recognition. We kindly ask you to participate in an emotion recognition game where you estimate the emotionality of a group of images of people. The entire study should take no more than 60 mins. The principal investigator of this study is Professor Tom Taiyi Yan at University College London, School of Management, and Professor Amit Goldberg from Harvard Business School.
 					</p>
 
 					<h3>Data Security</h3>
@@ -19,7 +32,7 @@ export default class Consent extends React.Component {
 
 					<h3>Benefits</h3>
 					<p>
-						You will receive XX GBP as base compensation for participation. There is a bonus component up to 100% of the base pay, based on your performance in the game (i.e., how accurately you are able to identify emotions).
+						You will receive £7 as base compensation for participation. There is a bonus component up to 100% of the base pay, based on your performance in the game (i.e., how accurately you are able to identify emotions).
 					</p>
 					<p>
 						A further benefit of participating in this research is that you are contributing to the advancement of social science.
