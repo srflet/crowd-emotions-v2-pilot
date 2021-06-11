@@ -4,6 +4,7 @@ import { render } from "react-dom"
 // Import components
 import Consent from "./intro/consent/Consent"
 import NewPlayer from "./intro/newplayer/NewPlayer"
+import ScreenSize from "./intro/ScreenSize"
 import Instructions from "./intro/Instructions"
 import Comprehension from "./intro/Comprehension"
 import Round from "./game/Round"
@@ -33,7 +34,7 @@ if (!isDev) {
 	// At this point they have been assigned a treatment. You can return
 	// different instruction steps depending on the assigned treatment.
 	Empirica.introSteps((game, treatment) => {
-		return [Instructions, Comprehension]
+		return [ScreenSize, Instructions, Comprehension]
 	})
 }
 
