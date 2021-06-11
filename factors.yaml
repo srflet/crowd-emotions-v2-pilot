@@ -14,8 +14,13 @@ treatments:
       - 4Fh7F8W6eeXR6bXsD
       - TaYNMYyEN4edFvdvK
       - 9n5zwjsTNEpXwZ9vy
+  - name: 1 control 30rounds
+    factorIds:
+      - pJSLJrip9ipnBLGe9
+      - caQGxk3X7ZcFbnj4R
+      - 9n5zwjsTNEpXwZ9vy
 factorTypes:
-  - _id: Seaes4nCm5o49STh4
+  - _id: jF7EwQtESjdh2K5y9
     name: playerCount
     description: The Number of players participating in the given game.
     required: true
@@ -36,7 +41,7 @@ factors:
   - _id: pJSLJrip9ipnBLGe9
     name: one
     value: 1
-    factorTypeId: Seaes4nCm5o49STh4
+    factorTypeId: jF7EwQtESjdh2K5y9
   - _id: TaYNMYyEN4edFvdvK
     name: five
     value: 5
@@ -52,11 +57,15 @@ factors:
   - _id: 4Fh7F8W6eeXR6bXsD
     name: two
     value: 2
-    factorTypeId: Seaes4nCm5o49STh4
+    factorTypeId: jF7EwQtESjdh2K5y9
   - _id: QbmC9g4sKGwgQR2xc
     name: ten
     value: 10
-    factorTypeId: Seaes4nCm5o49STh4
+    factorTypeId: jF7EwQtESjdh2K5y9
+  - _id: caQGxk3X7ZcFbnj4R
+    name: thirty
+    value: 30
+    factorTypeId: mcapRg7t8WvPj9Fgd
 lobbyConfigs:
   - name: neverfail
     timeoutType: lobby
