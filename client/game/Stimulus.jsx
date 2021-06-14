@@ -38,8 +38,8 @@ class StimulusBuilder extends Component {
 
         return (
             <div>
-                <p>Below, we are going to show you a group of photographs for 1.5 seconds.</p>
-                <p>Then we will ask you the average level of {stimConfig.emotionAdj} in these faces.</p>
+                <p>Below, we are going to show you faces expressing different degrees of emotion for 1.5 seconds.</p>
+                <p>Then we will ask you for the average degree of {stimConfig.emotionAdj} in these faces.</p>
                 <div className={`stimuli-holder ${!this.state.show && "hidden-stimuli"}`}>
                     {stimConfig.stimuliPaths.map((path, index) => {
                         return (

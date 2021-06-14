@@ -35,39 +35,39 @@ export default class Comprehension extends Component {
                         <div>
                             <p>
                                 <label className="my-radio">
-                                    <input type="radio" name="evaluate" value="false" /> The number of faces in a group of photographs
-                            </label>
+                                    <input type="radio" name="evaluate" value="false" /> The number of faces in a group of faces
+                                </label>
                             </p>
                             <p>
                                 <label className="my-radio">
-                                    <input type="radio" name="evaluate" value="true" /> The average emotion in a group of photographs
-                            </label>
+                                    <input type="radio" name="evaluate" value="true" /> The average emotion in a group of faces
+                                </label>
                             </p>
                             <p>
                                 <label className="my-radio">
-                                    <input type="radio" name="evaluate" value="false" /> The ethnicity of faces in a group of photographs
-                            </label>
+                                    <input type="radio" name="evaluate" value="false" /> The ethnicity of faces in a group of faces
+                                </label>
                             </p>
                         </div>
 
                         <br />
 
-                        <p>How many times will you see each group of photographs and give your estimate?</p>
+                        <p>How many times will you see each group of faces and give your estimate?</p>
                         <div>
                             <p>
                                 <label className="my-radio">
                                     <input type="radio" name="times" value="false" /> 1
-                            </label>
+                                </label>
                             </p>
                             <p>
                                 <label className="my-radio">
                                     <input type="radio" name="times" value="false" /> 2
-                            </label>
+                                </label>
                             </p>
                             <p>
                                 <label className="my-radio">
                                     <input type="radio" name="times" value="true" /> 3
-                            </label>
+                                </label>
                             </p>
                         </div>
                         <br />
@@ -75,7 +75,7 @@ export default class Comprehension extends Component {
                         {this.state.showError &&
                             <p className="error-msg">
                                 Incorrect. Please provide the correct answers. You can reread the instructions if you need to.
-                             </p>
+                            </p>
                         }
 
                         <br />

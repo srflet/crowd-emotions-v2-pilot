@@ -29,7 +29,7 @@ export default class Rating extends Component {
 
         return (
             <div>
-                <p className="title"><strong>What was the average level of {stimConfig.emotionAdj} in the group of faces?</strong></p>
+                <p className="title"><strong>What was the average degree of {stimConfig.emotionAdj} in the group of faces?</strong></p>
                 <p className="title">
                     <img src={path} alt="image of morphed face" />
                 </p>
@@ -63,7 +63,7 @@ export default class Rating extends Component {
                                 onClick={() => player.stage.submit()}
                             >
                                 Next
-                        </button>
+                            </button>
                         </div>
                 }
             </div>
