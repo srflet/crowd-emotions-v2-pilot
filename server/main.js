@@ -16,6 +16,8 @@ Empirica.gameInit(game => {
 		player.set("ratings", [...Array(game.treatment.nRounds + 1).keys()].map(value => "NA"))
 	})
 
+	game.set("treatment", game.treatment)
+
 	const trueAnswers = []
 
 	_.times(game.treatment.nRounds + 1, i => {
