@@ -32,16 +32,16 @@ export default class Thanks extends React.Component {
 					<br />
 					<h3>Feedback about your performance</h3>
 					<p>Your average absolute error was {averageError}, the lower the better.</p>
-					<p>Here is a breakdwon per round:</p>
+					<p>Here is a breakdown per round:</p>
 					<div className="feedbackHolder">
 						{trueAnswers.map((trueAnswer, index) => {
 							if (index > 0) {
 								return (
-									<div key={index} className={index === 1 ? "firstRound" : ""}>
+									<div key={index} className={(index - 1) % 5 === 0 ? "firstRound" : ""}>
 										<p><u>Round {index}</u></p>
 										<p>True Answer: {trueAnswer}</p>
 										<p>Your Answer: {ratings[index]}</p>
-										<p className="m0">Absolute error: {Math.abs(trueAnswer - ratings[index])}</p>
+										<p>Absolute error: {Math.abs(trueAnswer - ratings[index])}</p>
 									</div>
 								)
 							}

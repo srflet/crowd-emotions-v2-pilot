@@ -17,9 +17,12 @@
 ------ */
 
 // Manipulate font size and line height
-div, p, span, li { 
-	font-size: 104.5%; 
-	line-height: 1.5;
+div,
+p,
+span,
+li {
+    font-size: 104.5%;
+    line-height: 1.5;
 }
 
 .flex-c {
@@ -28,9 +31,9 @@ div, p, span, li {
 }
 
 .flex-col {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .m0 {
@@ -42,7 +45,7 @@ div, p, span, li {
 }
 
 .title {
-	text-align: center;
+    text-align: center;
 }
 
 /* --------
@@ -52,71 +55,72 @@ div, p, span, li {
 // Buttons
 
 .main-btn {
-	min-width: 80px;
-	padding: 0.75rem 1rem;
+    min-width: 80px;
+    padding: 0.75rem 1rem;
 
-	background-color: @main-color-200;
-	color: white;
-  
-	border: none;
-	border-radius: 5px;
-  
-	cursor: pointer;
+    background-color: @main-color-200;
+    color: white;
+
+    border: none;
+    border-radius: 5px;
+
+    cursor: pointer;
 }
 
-.multiple-btns > button {
-	margin: 0 4px;
+.multiple-btns>button {
+    margin: 0 4px;
 }
 
 .main-btn:hover {
-	background-color: @main-color-400;
+    background-color: @main-color-400;
 }
 
 .main-btn:disabled {
-	cursor: inherit;
-	background-color: @main-color-850;	
-	color: hsl(0, 0%, 50%)
+    cursor: inherit;
+    background-color: @main-color-850;
+    color: hsl(0, 0%, 50%)
 }
 
 // inputs
 
 .main-input {
-	padding: 0.4rem;
+    padding: 0.4rem;
 }
 
 .labelled-input {
-	margin-top: 8px;
+    margin-top: 8px;
 }
 
-input[type='checkbox'], input[type='radio'] {
-	cursor: pointer;
+input[type='checkbox'],
+input[type='radio'] {
+    cursor: pointer;
 }
 
 .my-radio {
-	cursor: pointer;
-		
-	input[type="radio"] {
-		margin-top: -2px;
-		vertical-align: middle;
+    cursor: pointer;
 
-		transform: scale(1.5);
-		margin-right: 0.5rem;
-  }
+    input[type="radio"] {
+        margin-top: -2px;
+        vertical-align: middle;
+
+        transform: scale(1.5);
+        margin-right: 0.5rem;
+    }
 }
 
 // Text
 
 .container {
-	width: 100%;
-	max-width: 75ch;
+    width: 100%;
+    max-width: 75ch;
 }
 
 // Timer
 
 .timer {
-	font-family: Helvetica, Arial, sans-serif;
-	width: 35px;
-	text-align: center;
+    font-family: Helvetica, Arial, sans-serif;
+    width: 35px;
+    text-align: center;
 }
 
 /* -------------
@@ -125,25 +129,25 @@ input[type='checkbox'], input[type='radio'] {
 
 .instructions-list {
 
-	li {
-		margin: 1rem 0;
-	}
+    li {
+        margin: 1rem 0;
+    }
 
 }
 
 .instructions-image {
-	margin: 1rem 0;
-	text-align: center;
+    margin: 1rem 0;
+    text-align: center;
 }
 
 .error-msg {
-	padding: 1rem;
+    padding: 1rem;
 
-	border: 1px solid #A82A2A;
-	border-radius: 0.5rem;
+    border: 1px solid #A82A2A;
+    border-radius: 0.5rem;
 
-	color: white;
-	background-color: #DB3737;
+    color: white;
+    background-color: #DB3737;
 }
 
 /* -------------
@@ -151,38 +155,38 @@ input[type='checkbox'], input[type='radio'] {
 -------------- */
 
 .round-holder {
-	display: flex;
+    display: flex;
 }
 
 .timeline {
-	box-sizing: border-box;
-	padding: 0 6rem;
+    box-sizing: border-box;
+    padding: 0 6rem;
 
-	text-align: center;
+    text-align: center;
 
-	.my-timer {
-		text-align: center;
-		border: 1px solid black;
+    .my-timer {
+        text-align: center;
+        border: 1px solid black;
 
-		p {
-			margin: 0;
-		}
+        p {
+            margin: 0;
+        }
 
-	}
-	
-	.notcurrent-stage {
-		color: hsl(0, 0%, 60%);
-	}
+    }
 
-	.current-stage {
-		background-color: @main-color-850;
-		padding: 1rem 0.5rem;
-	}
+    .notcurrent-stage {
+        color: hsl(0, 0%, 60%);
+    }
+
+    .current-stage {
+        background-color: @main-color-850;
+        padding: 1rem 0.5rem;
+    }
 }
 
 .waiting-msg {
-	background-color: @main-color-850;
-	padding: 0.75rem;
+    background-color: @main-color-850;
+    padding: 0.75rem;
 }
 
 /* ---------
@@ -190,30 +194,30 @@ input[type='checkbox'], input[type='radio'] {
 ---------- */
 
 .stimuli-holder {
-	width: 730px;
-	height: 600px;
-	padding: 1.5rem 1rem;
+    width: 730px;
+    height: 600px;
+    padding: 1.5rem 1rem;
 
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-wrap: wrap;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
 
-	background-color:#aaaaaa;
+    background-color: #aaaaaa;
 
-	.stimulus-holder {
-		position: relative;
-		width: 150px;
-		height: 170px;
-		
-		img {
-			position: absolute;
-		}
-	}
+    .stimulus-holder {
+        position: relative;
+        width: 150px;
+        height: 170px;
+
+        img {
+            position: absolute;
+        }
+    }
 }
 
 .hidden-stimuli {
-	display: none;
+    display: none;
 }
 
 /* -------
@@ -221,30 +225,30 @@ input[type='checkbox'], input[type='radio'] {
 ------- */
 
 .my-slider {
-	margin: 0 auto;
-	width: 90%;
+    margin: 0 auto;
+    width: 90%;
 
-	.bp3-slider-label {
-		font-size: 12pt;
-	}
+    .bp3-slider-label {
+        font-size: 12pt;
+    }
 }
 
 .rating-labels {
-	display: flex;
-	justify-content: space-between;
+    display: flex;
+    justify-content: space-between;
 
-	font-size: 95%;
+    font-size: 95%;
 }
 
 .binary-choice-holder {
 
-	label {
-		margin-left: 10px;
-	}
+    label {
+        margin-left: 10px;
+    }
 }
 
 .out-of-bounds-thumb span {
-	display: none;
+    display: none;
 }
 
 /* -------
@@ -252,32 +256,32 @@ input[type='checkbox'], input[type='radio'] {
 ------- */
 
 .social-responses {
-	display: flex;
-	justify-content: center;
-	flex-wrap: wrap;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
 
-	margin-top: 1rem;
+    margin-top: 1rem;
 
-	background-color: hsl(0, 0%, 95%);
+    background-color: hsl(0, 0%, 95%);
 }
 
 .social-response {
-	padding: 0.5rem;
+    padding: 0.5rem;
 
 
 
-	width: 100%;
-	max-width: 140px;
+    width: 100%;
+    max-width: 140px;
 
-	p {
-		font-size: 100%;
-		margin: 0.5rem 0;
-	}
+    p {
+        font-size: 100%;
+        margin: 0.5rem 0;
+    }
 
-	img {
-		width: calc(141px * 0.75);
-		height: calc(181px * 0.75);
-	}
+    img {
+        width: calc(141px * 0.75);
+        height: calc(181px * 0.75);
+    }
 }
 
 /* -----
@@ -285,20 +289,21 @@ input[type='checkbox'], input[type='radio'] {
 ------ */
 
 .feedbackHolder {
-	display: flex;
-	justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 
-	margin: 2rem 0;
+    margin: 2rem 0;
 
-	.firstRound {
-		border-left: 1px solid black;
-	}
+    div {
+        width: 20%;
+        text-align: center;
+        font-size: 85%;
 
-	div {
-		width: 100%;
-		text-align: center;
-		font-size: 85%;
+        border-right: 1px solid black;
+    }
 
-		border-right: 1px solid black;
-	}
+    .firstRound {
+        border-left: 1px solid black;
+    }
 }
