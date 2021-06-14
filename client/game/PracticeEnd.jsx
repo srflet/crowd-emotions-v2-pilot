@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 export default class PracticeEnd extends Component {
     render() {
-        const { player } = this.props
+        const { player, game } = this.props
         return (
             <div>
                 <p>
@@ -11,7 +11,7 @@ export default class PracticeEnd extends Component {
                 <p><strong><u>Remember, the more accurate you are, the higher your bonus (up to 100% of your base pay)!</u></strong></p>
                 {
                     player.stage.submitted
-                        ? <div className="title waiting-msg">Waiting for the other players...</div>
+                        ? <div className="title waiting-msg">Waiting{game.treatment.playerCount > 1 && " for the other players"}...</div>
                         : <div className="flex-c"><button className="main-btn" onClick={() => player.stage.submit()}>Continue</button></div>
                 }
             </div>

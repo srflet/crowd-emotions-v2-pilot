@@ -39,7 +39,7 @@ export default class Social extends Component {
                 <br />
                 {
                     player.stage.submitted
-                        ? <div className="title waiting-msg">Waiting for the other players...</div>
+                        ? <div className="title waiting-msg">Waiting{game.treatment.playerCount > 1 && " for the other players"}...</div>
                         : <div className="flex-c"><button className="main-btn" onClick={() => player.stage.submit()}>Continue</button></div>
                 }
             </div>

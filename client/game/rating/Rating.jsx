@@ -14,7 +14,7 @@ export default class Rating extends Component {
     }
 
     render() {
-        const { player, round, stage } = this.props
+        const { player, round, stage, game } = this.props
 
         // Get rating
         const rating = player.get("ratings")[round.get("roundIndex")] === "NA" ? 1 : player.get("ratings")[round.get("roundIndex")]
@@ -47,7 +47,7 @@ export default class Rating extends Component {
                 <br />
                 {
                     player.stage.submitted
-                        ? <div className="title waiting-msg">Your rating has been submitted. Waiting for other players to submit...</div>
+                        ? <div className="title waiting-msg">Your rating has been submitted. Waiting{game.treatment.playerCount > 1 && " for the other players"}...</div>
                         : <div className="flex-c">
                             <button
                                 className="main-btn"
