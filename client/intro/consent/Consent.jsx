@@ -81,7 +81,7 @@ export default class Consent extends React.Component {
 						By clicking on the CONTINUE button below, you are providing your informed consent to participate in the current research.
 					</p>
 					<p>
-						If you have any questions about this research, please feel free to contact the lead investigator, Professor Thomas Taiyi Yan, tom.taiyi.yan@ucl.ac.uk.
+						If you have any questions about this research, please feel free to contact the lead investigator, Professor Thomas Taiyi Yan, tom.yan@ucl.ac.uk.
 					</p>
 
 					<br />
