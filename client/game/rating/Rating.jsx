@@ -24,8 +24,7 @@ export default class Rating extends Component {
         const path = `stimuli/${stimConfig.person}${-1 + rating + stimConfig.range[0]}.jpg`
 
         // Get disable condition
-        const disabledCondition = player.get("ratings")[round.get("roundIndex")] === "NA" ||
-            (stage.get("isFinalRating") && !player.stage.get("binaryChoice"))
+        const disabledCondition = player.get("ratings")[round.get("roundIndex")] === "NA"
 
         return (
             <div>
@@ -46,13 +45,6 @@ export default class Rating extends Component {
                 </div>
                 <p className="rating-labels"><span>neutral</span><span>very {stimConfig.emotion}</span></p>
                 <br />
-                {
-                    stage.get("isFinalRating") &&
-                    <div>
-                        <BinaryChoice stimConfig={stimConfig} {...this.props} />
-                        <br />
-                    </div>
-                }
                 {
                     player.stage.submitted
                         ? <div className="title waiting-msg">Your rating has been submitted. Waiting for other players to submit...</div>
