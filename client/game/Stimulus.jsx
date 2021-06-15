@@ -38,8 +38,9 @@ class StimulusBuilder extends Component {
 
         return (
             <div>
-                <p>Below, we are going to show you faces expressing different degrees of emotion for 1.5 seconds.</p>
-                <p>Then we will ask you for the average degree of {stimConfig.emotionAdj} in these faces.</p>
+                <p className="m0 title">
+                    We will ask you for the average degree of <strong>{stimConfig.emotionAdj}</strong> in these faces.
+                </p>
                 <div className={`stimuli-holder ${this.state.show && "hidden-stimuli"}`}>
                     <div className="fixation-cross">
                         +

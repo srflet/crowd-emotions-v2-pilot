@@ -17,7 +17,7 @@ export default class Consent extends React.Component {
 		}
 
 		const time = 30
-		const flatPay = "3.50"
+		const flatPay = "4.00"
 
 		return (
 			<CenterDevWrapper {...this.props}>

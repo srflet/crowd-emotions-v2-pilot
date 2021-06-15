@@ -15,7 +15,17 @@ Empirica.onStageStart((game, round, stage) => { })
 
 // onStageEnd is triggered after each stage.
 // It receives the same options as onRoundEnd, and the stage that just ended.
-Empirica.onStageEnd((game, round, stage) => { })
+Empirica.onStageEnd((game, round, stage) => {
+
+    if (stage.name === "rating") {
+
+        game.players.map(player => {
+            const rating = player.stage.get("rating") ?? player.get("ratings")[round.get("roundIndex")]
+            player.stage.set("rating", rating)
+        })
+
+    }
+})
 
 // onRoundEnd is triggered after each round.
 // It receives the same options as onGameEnd, and the round that just ended.

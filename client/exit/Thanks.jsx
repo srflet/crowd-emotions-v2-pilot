@@ -17,9 +17,10 @@ export default class Thanks extends React.Component {
 			.map((trueAnswer, index) => {
 				return Math.abs(trueAnswer - ratings[index])
 			})
+			.filter(val => !isNaN(val))
 			.reduce((total, item) => (total += item), 0)
 
-		const averageError = (totalError / trueAnswers.length).toFixed(2)
+		const averageError = (totalError / trueAnswers.filter((trueAnswer, index) => ratings[index] !== "NA").length).toFixed(2)
 
 		return (
 			<CenterDevWrapper {...this.props}>

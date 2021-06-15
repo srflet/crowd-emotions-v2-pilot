@@ -10,7 +10,7 @@ export default class ScreenSize extends Component {
                 <div className="container">
                     <h2></h2>
 
-                    <p>Please remove every distractions</p>
+                    <p>Please remove every distraction.</p>
 
                     <p>Make sure your browser is opened in full screen or you will not be able to do the study properly.</p>
 
