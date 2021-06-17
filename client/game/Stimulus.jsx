@@ -1,6 +1,12 @@
 import React, { Component } from 'react'
 import { StageTimeWrapper } from "meteor/empirica:core"
 
+// Allows you to sync time with the server
+import { TimeSync } from "meteor/mizzao:timesync";
+
+// Trying to build an accurate timer based on: 
+// https://stackoverflow.com/questions/29971898/how-to-create-an-accurate-timer-in-javascript
+
 class StimulusBuilder extends Component {
 
     constructor(props) {
@@ -9,7 +15,7 @@ class StimulusBuilder extends Component {
             timed: 0,
             show: false
         };
-        this.timer = null;
+        this.expectedTimeout = null;
     }
 
     componentWillUnmount() {
@@ -20,20 +26,15 @@ class StimulusBuilder extends Component {
         const { round, stage, remainingSeconds } = this.props
         const stimConfig = round.get("stimConfig")
 
-        if (remainingSeconds <= 5 && this.timer === null) {
+        const currentTime = Number(new Date(TimeSync.serverTime(null, 100)))
+
+        if (remainingSeconds <= 5 && this.expectedTimeout === null) {
             this.setState({ show: true })
+            this.expectedTimeout = Number(new Date(TimeSync.serverTime(null, 100))) + 1500
+        }
 
-            this.timer = setInterval(() => {
-                let timed = this.state.timed + 500
-
-                if (timed >= 1500) {
-                    this.setState({ show: false })
-                    clearInterval(this.timer)
-                } else {
-                    this.setState({ timed: timed })
-                }
-
-            }, 500);
+        if (currentTime >= this.expectedTimeout && this.expectedTimeout !== null && this.state.show) {
+            this.setState({ show: false })
         }
 
         return (

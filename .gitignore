@@ -7,5 +7,5 @@ staging.json
 development.json
 dev.json
 local.json
-deploy.json
+deploy*.json
 *.bat
