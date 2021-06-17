@@ -17,14 +17,15 @@ export default class Rating extends Component {
         const { player, round, stage, game } = this.props
 
         // Get rating
-        const rating = player.get("ratings")[round.get("roundIndex")] === "NA" ? 1 : player.get("ratings")[round.get("roundIndex")]
+        const tmpRating = player.get("ratings")
+        const rating = tmpRating[round.get("roundIndex")] === "NA" ? 1 : tmpRating[round.get("roundIndex")]
 
         // Get the path
         const stimConfig = round.get("stimConfig")
         const path = `stimuli/${stimConfig.person}${-1 + rating + stimConfig.range[0]}.jpg`
 
         // Get disable condition
-        const disabledCondition = player.get("ratings")[round.get("roundIndex")] === "NA"
+        const disabledCondition = tmpRating[round.get("roundIndex")] === "NA"
 
         return (
             <div>
@@ -32,31 +33,34 @@ export default class Rating extends Component {
                 <p className="title">
                     <img src={path} alt="image of morphed face" />
                 </p>
-                <div className="my-slider">
-                    <Slider
-                        min={1}
-                        max={50}
-                        stepSize={1}
-                        labelValues={[1, 25, 50]}
-                        value={rating}
-                        onChange={this.handleChange}
-                        showTrackFill={false}
-                    />
-                </div>
-                <p className="rating-labels"><span>neutral</span><span>very {stimConfig.emotion}</span></p>
-                <br />
+
                 {
                     player.stage.submitted
-                        ? <div className="title waiting-msg">Your rating has been submitted. Waiting{game.treatment.playerCount > 1 && " for the other players"}...</div>
-                        : <div className="flex-c">
-                            <button
-                                className="main-btn"
-                                disabled={disabledCondition}
-                                onClick={() => player.stage.submit()}
-                            >
-                                Next
-                            </button>
-                        </div>
+                        ? <><br /><div className="title waiting-msg">Your rating has been submitted. Waiting{game.treatment.playerCount > 1 && " for the other players"}...</div></>
+                        : <>
+                            <div className="my-slider">
+                                <Slider
+                                    min={1}
+                                    max={50}
+                                    stepSize={1}
+                                    labelValues={[1, 25, 50]}
+                                    value={rating}
+                                    onChange={this.handleChange}
+                                    showTrackFill={false}
+                                />
+                            </div>
+                            <p className="rating-labels"><span>neutral</span><span>very {stimConfig.emotion}</span></p>
+                            <br />
+                            <div className="flex-c">
+                                <button
+                                    className="main-btn"
+                                    disabled={disabledCondition}
+                                    onClick={() => player.stage.submit()}
+                                >
+                                    Next
+                                </button>
+                            </div>
+                        </>
                 }
             </div>
 
