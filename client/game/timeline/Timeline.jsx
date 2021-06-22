@@ -7,7 +7,7 @@ export default class Timeline extends Component {
 
         return (
             <div className="timeline">
-                <p className="title"><strong>{round.get("isPractice") ? `Practice Round` : `Round ${round.get("roundIndex")}`}</strong></p>
+                <p className="title"><strong>{round.get("isPractice") ? `Practice Round` : `Round ${round.get("roundIndex")}/${game.treatment.nRounds}`}</strong></p>
                 {round.stages.map((s, index) => {
                     return <p key={index} className={`${stage._id === s._id ? "current" : "notcurrent"}-stage`}>{s.displayName}</p>
                 })}

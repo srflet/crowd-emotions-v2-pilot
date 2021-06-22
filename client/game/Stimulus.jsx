@@ -28,7 +28,7 @@ class StimulusBuilder extends Component {
 
         const currentTime = Number(new Date(TimeSync.serverTime(null, 100)))
 
-        if (remainingSeconds <= 5 && this.expectedTimeout === null) {
+        if (remainingSeconds <= 3 && this.expectedTimeout === null) {
             this.setState({ show: true })
             this.expectedTimeout = Number(new Date(TimeSync.serverTime(null, 100))) + 1500
         }

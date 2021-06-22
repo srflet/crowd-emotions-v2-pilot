@@ -45,7 +45,7 @@ Empirica.gameInit(game => {
 
 		const imgArraySize = _.random(8, 12)
 		const imgIndexes = [...Array(imgArraySize).keys()].map(i => _.random(range[0], range[1]))
-		const imgValues = imgIndexes.map(i => i - range[0])
+		const imgValues = imgIndexes.map(i => i - (range[0] - 1))
 
 		const imgMean = Math.round(imgValues.reduce((total, item) => (total += item), 0) / imgValues.length)
 		trueAnswers.push(imgMean)
@@ -78,13 +78,13 @@ Empirica.gameInit(game => {
 		round.addStage({
 			name: "stimulus",
 			displayName: "Stimulus",
-			durationInSeconds: isDev ? 9999 : 10
+			durationInSeconds: isDev ? 9999 : 5
 		})
 
 		round.addStage({
 			name: "rating",
 			displayName: "Rating",
-			durationInSeconds: isDev ? 9999 : 30
+			durationInSeconds: isDev ? 9999 : 15
 		})
 
 		// No social stage in the practice NOR in the control
@@ -92,7 +92,7 @@ Empirica.gameInit(game => {
 			round.addStage({
 				name: "social",
 				displayName: "Social",
-				durationInSeconds: isDev ? 9999 : 30
+				durationInSeconds: isDev ? 9999 : 15
 			})
 		}
 
@@ -100,13 +100,13 @@ Empirica.gameInit(game => {
 		round.addStage({
 			name: "stimulus",
 			displayName: "Stimulus",
-			durationInSeconds: isDev ? 9999 : 10
+			durationInSeconds: isDev ? 9999 : 5
 		})
 
 		round.addStage({
 			name: "rating",
 			displayName: "Rating",
-			durationInSeconds: isDev ? 9999 : 30
+			durationInSeconds: isDev ? 9999 : 15
 		})
 
 		// No social stage in the practice NOR in the control
@@ -114,7 +114,7 @@ Empirica.gameInit(game => {
 			round.addStage({
 				name: "social",
 				displayName: "Social",
-				durationInSeconds: isDev ? 9999 : 30
+				durationInSeconds: isDev ? 9999 : 15
 			})
 		}
 
@@ -122,13 +122,13 @@ Empirica.gameInit(game => {
 		round.addStage({
 			name: "stimulus",
 			displayName: "Stimulus",
-			durationInSeconds: isDev ? 9999 : 10
+			durationInSeconds: isDev ? 9999 : 5
 		})
 
 		round.addStage({
 			name: "rating",
 			displayName: "Rating",
-			durationInSeconds: isDev ? 9999 : 30,
+			durationInSeconds: isDev ? 9999 : 15,
 			data: {
 				isFinalRating: true
 			}
@@ -140,7 +140,16 @@ Empirica.gameInit(game => {
 			round.addStage({
 				name: "practiceEnd",
 				displayName: "End of Practice Round",
-				durationInSeconds: isDev ? 9999 : 30,
+				durationInSeconds: isDev ? 9999 : 15,
+			})
+		}
+
+		if (i === 15) {
+			// a break every 10 stages
+			round.addStage({
+				name: "break",
+				displayName: "Break",
+				durationInSeconds: isDev ? 9999 : 180,
 			})
 		}
 

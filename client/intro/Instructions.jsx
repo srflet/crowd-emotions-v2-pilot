@@ -29,7 +29,7 @@ export default class Instructions extends Component {
                             We will show you this group of faces two more times where you can also revise your answers two more times.
                         </li>
                         <li>
-                            Then we will move onto the next group of faces. In this study, there are in total {game.treatment.nRounds} group of faces.
+                            Then we will move onto the next group of faces. There will be a practice round and 30 normal rounds {game.treatment.nRounds}. You will have the opportunity to take break in the middle of the study.
                         </li>
                     </ol>
 
