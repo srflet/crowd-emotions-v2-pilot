@@ -4,8 +4,16 @@ import ConfidenceRating from './ConfidenceRating'
 import BinaryChoice from './BinaryChoice'
 
 export default class Rating extends Component {
+    state = {
+        rating: this.props.player.get("ratings")[this.props.round.get("roundIndex")] === "NA" ? 1 : this.props.player.get("ratings")[this.props.round.get("roundIndex")]
+    }
 
     handleChange = value => {
+        this.setState({ rating: value })
+
+    }
+
+    handleRelease = value => {
         const { player, round } = this.props
         const ratings = player.get("ratings")
         ratings[round.get("roundIndex")] = value
@@ -18,7 +26,8 @@ export default class Rating extends Component {
 
         // Get rating
         const tmpRating = player.get("ratings")
-        const rating = tmpRating[round.get("roundIndex")] === "NA" ? 1 : tmpRating[round.get("roundIndex")]
+        // const rating = tmpRating[round.get("roundIndex")] === "NA" ? 1 : tmpRating[round.get("roundIndex")]
+        const { rating } = this.state
 
         // Get the path
         const stimConfig = round.get("stimConfig")
@@ -46,6 +55,7 @@ export default class Rating extends Component {
                                     labelValues={[1, 25, 50]}
                                     value={rating}
                                     onChange={this.handleChange}
+                                    onRelease={this.handleRelease}
                                     showTrackFill={false}
                                 />
                             </div>
