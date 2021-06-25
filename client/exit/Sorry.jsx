@@ -10,10 +10,10 @@ export default class Sorry extends Component {
         let msg
         switch (player.exitStatus) {
             case "gameFull":
-                msg = "All games you are eligible for have filled up too fast..."
+                msg = "All games you are eligible for have filled up too fast... You will be given £0.10 for your time."
                 break
             case "gameLobbyTimedOut":
-                msg = "There were NOT enough players for the game to start..."
+                msg = "There were NOT enough players for the game to start... You will be given £0.10 for your time."
                 break
             case "playerEndedLobbyWait":
                 msg =
