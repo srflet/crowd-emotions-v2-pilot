@@ -37,9 +37,11 @@ export default class Instructions extends Component {
                         <div>
                             <p><strong>You will be paired with {game.treatment.playerCount} other players for this task.</strong></p>
                             <p>This means you will be going through the rounds at the same pace as other players.</p>
-                            {game.treatment.condition === "control"
-                                ? <p>However, you will not directly interact with the other players</p>
-                                : <p>In between ratings, you will have a 'social' stage where you will see the ratings from the other players as well as an average of their ratings.</p>
+                            {game.treatment.condition !== "control" &&
+                                <div>
+                                    <p>In between ratings, you will have a 'social' stage where you will see the ratings from the other players (as a morphed face) and an average of their ratings (a morphed face based on the average rating).</p>
+                                    <div className="instructions-image"><img src="instructions/instructions2.png" width="50%" /></div>
+                                </div>
                             }
                         </div>
                     }
