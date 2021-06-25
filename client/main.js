@@ -2,6 +2,7 @@ import Empirica from "meteor/empirica:core"
 import { render } from "react-dom"
 
 // Import components
+import WaitingConsent from "./intro/consent/WaitingConsent"
 import Consent from "./intro/consent/Consent"
 import NewPlayer from "./intro/newplayer/NewPlayer"
 import ScreenSize from "./intro/ScreenSize"
@@ -28,7 +29,7 @@ const isDev = false
 
 if (!isDev) {
 	// Set the Consent Component you want to present players (optional).
-	Empirica.consent(Consent)
+	Empirica.consent(WaitingConsent)
 
 	// Introduction pages to show before they play the game (optional).
 	// At this point they have been assigned a treatment. You can return

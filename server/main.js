@@ -3,11 +3,19 @@ import Empirica from "meteor/empirica:core"
 import "./bots.js"
 import "./callbacks.js"
 
+// Import the configs
+import { Configs } from "../shared/api/collectionAdminGlobalConfigs.js";
+
 // Importing helper functions for randomness
 import { choice, popChoice, shuffle } from './helper-functions/random';
 
 // Setting a variable for whether this is development/testing or not (determines the time set to the stages)
 const isDev = false
+
+// Publish the configs
+Meteor.publish('admin-global-configs', function publishTasks() {
+	return Configs.find({})
+})
 
 // When the game starts (intro steps have ended), set up the game
 Empirica.gameInit(game => {
