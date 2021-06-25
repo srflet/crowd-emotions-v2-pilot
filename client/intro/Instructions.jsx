@@ -33,6 +33,16 @@ export default class Instructions extends Component {
                         </li>
                     </ol>
 
+                    {game.treatment.playerCount > 1 &&
+                        <div>
+                            <p><strong>You will be paired with {game.treatment.playerCount} other players for this task.</strong></p>
+                            <p>This means you will be going through the rounds at the same pace as other players.</p>
+                            {game.treatment.condition === "control"
+                                ? <p>However, you will not directly interact with the other players</p>
+                                : <p>In between ratings, you will have a 'social' stage where you will see the ratings from the other players as well as an average of their ratings.</p>
+                            }
+                        </div>
+                    }
 
                     <br />
                     <div className="flex-c multiple-btns">
