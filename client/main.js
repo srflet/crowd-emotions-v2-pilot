@@ -4,6 +4,7 @@ import { render } from "react-dom"
 // Import components
 import WaitingConsent from "./intro/consent/WaitingConsent"
 import Consent from "./intro/consent/Consent"
+import Lobby from "./intro/lobby/Lobby"
 import NewPlayer from "./intro/newplayer/NewPlayer"
 import ScreenSize from "./intro/ScreenSize"
 import Instructions from "./intro/Instructions"
@@ -12,6 +13,7 @@ import Round from "./game/Round"
 import ExitSurvey from "./exit/ExitSurvey"
 import Thanks from "./exit/Thanks"
 import Sorry from "./exit/Sorry"
+import WaitingThanks from "./exit/WaitingThanks"
 
 // Take out elements of the header:
 // Set the About Component you want to use for the About dialog (optional).
@@ -23,6 +25,9 @@ Empirica.header(() => null)
 
 // Set the component for getting the player id (optional)
 Empirica.newPlayer(NewPlayer)
+
+// Set the lobby (optional)
+Empirica.lobby(Lobby)
 
 // Using isDev to help with quick testing
 const isDev = false
@@ -61,7 +66,7 @@ Empirica.exitSteps((game, player) => {
 	) {
 		return [Sorry]
 	}
-	return [ExitSurvey, Thanks]
+	return [ExitSurvey, WaitingThanks]
 })
 
 // Start the app render tree.

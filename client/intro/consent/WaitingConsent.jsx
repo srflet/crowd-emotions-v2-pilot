@@ -4,6 +4,7 @@ import React, { Component } from 'react'
 import CenterDevWrapper from "../../wrappers/CenterDevWrapper"
 import { isMobile, isFirefox, isChrome } from 'react-device-detect'
 import Consent from './Consent'
+import { introInfo } from './introInfo'
 
 // Import the config from the db
 import { withTracker } from "meteor/react-meteor-data"
@@ -36,10 +37,9 @@ export default class WaitingConsent extends Component {
 
 
 class WaitingConsentPage extends Component {
+
     render() {
-
-        const { loading, now, timeToStart } = this.props
-
+        const { loading, now, timeToStart, prolificCode } = this.props
 
         if (loading) {
             return (
@@ -47,8 +47,10 @@ class WaitingConsentPage extends Component {
             )
         }
 
-        console.log(this.props.game)
-        let difference = +timeToStart - +new Date(TimeSync.serverTime(null, 1000))
+        // let difference = +timeToStart - +new Date(TimeSync.serverTime(null, 1000))
+        let difference = +timeToStart - +now
+
+        // If waiting for the time, show the countdown and instructions
         if (difference > 1) {
             return (
                 <div>
@@ -56,12 +58,42 @@ class WaitingConsentPage extends Component {
                     <div className="title">
                         <p>The study will start in:</p>
                         <Countdown {...this.props} />
-                        <p><i>({timeToStart.toLocaleTimeString()})</i></p>
-                        <p><strong>Please make sure to return to this tab just before the timer runs out.</strong></p>
-                        <p>You will then be given some instructions before joining other players for the study.</p>
+                        <p><i>A bell will ring 2 minutes, 1 minute, and 10 seconds before the start</i></p>
+
+                        <fieldset>
+                            <legend>Study Information</legend>
+                            <p><strong>Please make sure to return to this tab at the end of the timer. The study will start at exactly {timeToStart.toLocaleTimeString()}.</strong></p>
+                            <p>This study involves groups of 10 participants.</p>
+                            <p>You will be given instructions before joining 9 other players in the lobby.</p>
+                            <p>The study lasts {introInfo.time}mins and pays between £{introInfo.flatPay} and £{introInfo.bonusPay} depending on your performance.</p>
+                        </fieldset>
+
+                        {prolificCode &&
+                            <fieldset>
+                                <legend>Prolific Information</legend>
+                                <p>You can enter this code in the study so that you can do other studies before this one starts: {prolificCode}</p>
+                                <p><strong>If you do not complete this study, we will ask you to return your participation (this has no adverse effect on Prolific status).</strong></p>
+                                <p>If you do not return your participation we will have to reject your participation.</p>
+                                <p>If there aren't enough players to form a group, you will not have to complete the study. We will pay you £0.10 for your time, but you will still have to return your study.</p>
+                            </fieldset>
+                        }
+
+
                     </div>
                 </div>
 
+            )
+        }
+
+        // If 5 minutes after the time, say it is too late
+        if ((difference / 1000) < -300) {
+            return (
+                <div>
+                    <p><strong>Thank you for coming. The experiment already started at {timeToStart.toLocaleTimeString()}.</strong></p>
+                    {prolificCode &&
+                        <p>Please return your participation on Prolific (this has no adverse effects on your Prolific rating).</p>
+                    }
+                </div>
             )
         }
 
@@ -81,11 +113,18 @@ WaitingConsentPageContents = withTracker(rest => {
 
     // Get the globalConfigs collection
     const globalConfigs = Configs.find({}).fetch()[0] ?? {}
-    const timeToStart = globalConfigs.timeToStart ?? new Date("2021-06-25T16:00:00Z")
+    // const timeToStart = new Date(globalConfigs.timeToStart) 
+    const timeToStart = new Date("2021-06-28T13:10:00Z")
+    const prolificCode = globalConfigs.prolificCode ?? "COXGE9"
+
+    // Get time now (makes sur the whole process is synced)
+    const now = new Date(TimeSync.serverTime(null, 1000))
 
     return {
         loading,
-        timeToStart
+        timeToStart,
+        now,
+        prolificCode
     };
 
 })(WaitingConsentPage)
@@ -97,6 +136,9 @@ class Countdown extends Component {
         seconds: '00'
     }
 
+    // Prepare a notification sound 
+    notificationSound = new Audio("sounds/notification.mp3")
+
     componentDidMount() {
         setInterval(() => {
             let difference = +this.props.timeToStart - +new Date(TimeSync.serverTime(null, 1000))
@@ -104,6 +146,22 @@ class Countdown extends Component {
             let hours = Math.floor((difference / (1000 * 60 * 60)) % 24)
             let minutes = Math.floor((difference / (1000 * 60)) % 60)
             let seconds = Math.floor((difference / (1000)) % 60)
+
+            // Make sound at 2 minutes
+            if ((difference / 1000) < 120 && (difference / 1000) > 119) {
+                this.notificationSound.play()
+            }
+
+            // Make sound at 1 minute
+            if ((difference / 1000) < 60 && (difference / 1000) > 59) {
+                this.notificationSound.play()
+            }
+
+            // Make sound for the last 10 seconds
+            if ((difference / 1000) < 11 && (difference / 1000) > 0) {
+                this.notificationSound.play()
+            }
+
             this.setState({
                 hours: hours > 9 ? hours : `0${hours}`,
                 minutes: minutes > 9 ? minutes : `0${minutes}`,
@@ -116,8 +174,11 @@ class Countdown extends Component {
     render() {
         const { hours, minutes, seconds } = this.state
 
+        const countdownStyle = { fontSize: "40pt" }
+        countdownStyle.color = hours === "00" && minutes === "00" ? "red" : "black"
+
         return (
-            <p style={{ fontSize: "40pt" }}>{`${hours}:${minutes}:${seconds}`}</p>
+            <p style={countdownStyle}>{`${hours}:${minutes}:${seconds}`}</p>
         )
     }
 }

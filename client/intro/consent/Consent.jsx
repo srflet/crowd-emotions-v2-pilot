@@ -2,6 +2,7 @@ import React from "react"
 import { ConsentButton } from "meteor/empirica:core"
 import CenterDevWrapper from "../../wrappers/CenterDevWrapper"
 import { isMobile, isFirefox, isChrome } from 'react-device-detect'
+import { introInfo } from "./introInfo"
 
 export default class Consent extends React.Component {
 	render() {
@@ -16,8 +17,7 @@ export default class Consent extends React.Component {
 			)
 		}
 
-		const time = 30
-		const flatPay = "4.00"
+		const { time, flatPay, bonusPay } = introInfo
 
 		return (
 			<CenterDevWrapper {...this.props}>

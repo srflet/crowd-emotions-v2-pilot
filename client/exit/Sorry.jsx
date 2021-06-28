@@ -10,10 +10,10 @@ export default class Sorry extends Component {
         let msg
         switch (player.exitStatus) {
             case "gameFull":
-                msg = "All games you are eligible for have filled up too fast... You will be given £0.10 for your time."
+                msg = "Unfortunately, all the games available are full. We will pay you £0.10 for your time."
                 break
             case "gameLobbyTimedOut":
-                msg = "There were NOT enough players for the game to start... You will be given £0.10 for your time."
+                msg = "Unfortunately, there were NOT enough players for the game to start. We will pay you £0.10 for your time."
                 break
             case "playerEndedLobbyWait":
                 msg =
@@ -35,10 +35,13 @@ export default class Sorry extends Component {
         return (
             <CenterDevWrapper {...this.props}>
                 <div className="container">
-                    <h4>Sorry!</h4>
-                    <p>Sorry, you were not able to play today! {msg}</p>
+                    <h4></h4>
+                    <p>Thank you for coming. {msg}</p>
+                    <p><strong>
+                        Please return your participation on Prolific (this will have no adverse effect on your Prolific status).
+                    </strong></p>
                     <p>
-                        <strong>Please contact the researcher if you believe there was a problem.</strong>
+                        Please contact the researcher if you believe there was a problem.
                     </p>
                 </div>
             </CenterDevWrapper>
