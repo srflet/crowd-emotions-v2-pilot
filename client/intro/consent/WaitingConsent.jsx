@@ -113,9 +113,9 @@ WaitingConsentPageContents = withTracker(rest => {
 
     // Get the globalConfigs collection
     const globalConfigs = Configs.find({}).fetch()[0] ?? {}
-    // const timeToStart = new Date(globalConfigs.timeToStart) 
-    const timeToStart = new Date("2021-06-28T13:10:00Z")
-    const prolificCode = globalConfigs.prolificCode ?? "COXGE9"
+    const timeToStart = new Date(globalConfigs.timeToStart)
+    // const timeToStart = new Date("2021-06-28T13:10:00Z")
+    const prolificCode = globalConfigs.prolificCode
 
     // Get time now (makes sur the whole process is synced)
     const now = new Date(TimeSync.serverTime(null, 1000))
