@@ -20,7 +20,7 @@ treatments:
       - caQGxk3X7ZcFbnj4R
       - 9n5zwjsTNEpXwZ9vy
 factorTypes:
-  - _id: jF7EwQtESjdh2K5y9
+  - _id: GfQAYysNaku2uzsuE
     name: playerCount
     description: The Number of players participating in the given game.
     required: true
@@ -41,7 +41,7 @@ factors:
   - _id: pJSLJrip9ipnBLGe9
     name: one
     value: 1
-    factorTypeId: jF7EwQtESjdh2K5y9
+    factorTypeId: GfQAYysNaku2uzsuE
   - _id: TaYNMYyEN4edFvdvK
     name: five
     value: 5
@@ -57,11 +57,11 @@ factors:
   - _id: 4Fh7F8W6eeXR6bXsD
     name: two
     value: 2
-    factorTypeId: jF7EwQtESjdh2K5y9
+    factorTypeId: GfQAYysNaku2uzsuE
   - _id: QbmC9g4sKGwgQR2xc
     name: ten
     value: 10
-    factorTypeId: jF7EwQtESjdh2K5y9
+    factorTypeId: GfQAYysNaku2uzsuE
   - _id: caQGxk3X7ZcFbnj4R
     name: thirty
     value: 30
@@ -71,4 +71,9 @@ lobbyConfigs:
     timeoutType: lobby
     timeoutInSeconds: 300
     timeoutStrategy: ignore
+    gameLobbyIds: []
+  - name: fail3min
+    timeoutType: lobby
+    timeoutInSeconds: 180
+    timeoutStrategy: fail
     gameLobbyIds: []
