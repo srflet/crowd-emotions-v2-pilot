@@ -52,7 +52,7 @@ export default class Consent extends React.Component {
 
 					<h3>What are the possible benefits of taking part?</h3>
 					<p>
-						You will be compensated for you time. You will receive a base payment of £{flatPay} for completing the study and you may obtain a bonus of up to 100% of the base payment based on your performance. Otherwise, there are no other direct benefits to you from participating in this research. Some potential benefits include learning more about research. We hope that, in the future, other people might benefit from this study through improved understanding of workplace interactions.
+						You will be compensated for you time. You will receive a base payment of £{flatPay} for completing the study and you may obtain a bonus based on your performance. Otherwise, there are no other direct benefits to you from participating in this research. Some potential benefits include learning more about research. We hope that, in the future, other people might benefit from this study through improved understanding of workplace interactions.
 					</p>
 
 					<h3>What if something goes wrong?</h3>
