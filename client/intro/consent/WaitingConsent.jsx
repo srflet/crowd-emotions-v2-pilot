@@ -85,17 +85,17 @@ class WaitingConsentPage extends Component {
             )
         }
 
-        // // If 5 minutes after the time, say it is too late
-        // if ((difference / 1000) < -300) {
-        //     return (
-        //         <div>
-        //             <p><strong>Thank you for coming. The experiment already started at {timeToStart.toLocaleTimeString()}.</strong></p>
-        //             {prolificCode &&
-        //                 <p>Please return your participation on Prolific (this has no adverse effects on your Prolific rating).</p>
-        //             }
-        //         </div>
-        //     )
-        // }
+        // If X minutes after the time, say it is too late
+        if ((difference / 1000) < -1800) {
+            return (
+                <div>
+                    <p><strong>Thank you for coming. The experiment already started.</strong></p>
+                    {prolificCode &&
+                        <p>Please return your participation on Prolific (this has no adverse effects on your Prolific rating).</p>
+                    }
+                </div>
+            )
+        }
 
         return <Consent {...this.props} />
     }
