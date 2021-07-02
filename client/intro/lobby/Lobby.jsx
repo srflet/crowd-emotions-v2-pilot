@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import CenterDevWrapper from "../../wrappers/CenterDevWrapper"
+import { introInfo } from '../introInfo'
 
 export default class Lobby extends Component {
     render() {
@@ -10,7 +11,9 @@ export default class Lobby extends Component {
                 <div className="container">
                     <h3 className="title">Lobby</h3>
                     <p className="title"><strong>Players ready (including you): {gameLobby.readyCount}/{gameLobby.treatment.playerCount}</strong></p>
-                    <p><u>If after 3 minutes there aren't enough players to create a whole group,</u> the study will be cancelled. You won't have to complete the study. We will pay you £0.10 for your time. We will ask you to return your participation on Prolific (this has no adverse effects for you).</p>
+                    <p>
+                        <strong>We need groups of 10 players for the study to begin.</strong> If 10 players show up in a lobby, then the study will start. Otherwise, you will wait up to {introInfo.timeout}mins in the lobby. If there are less than 10 players by the end of that time, the study will stop. You will be asked to return your participation on Prolific (this has no adverse effect on your Prolific score) and you will be paid £{introInfo.pityPay} for your time.
+                    </p>
                 </div>
             </CenterDevWrapper>
         )

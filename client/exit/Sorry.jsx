@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Meteor } from "meteor/meteor"
 import CenterDevWrapper from '../wrappers/CenterDevWrapper'
+import { introInfo } from '../intro/introInfo'
 
 export default class Sorry extends Component {
     static stepName = "Sorry"
@@ -10,10 +11,10 @@ export default class Sorry extends Component {
         let msg
         switch (player.exitStatus) {
             case "gameFull":
-                msg = "Unfortunately, all the games available are full. We will pay you £0.10 for your time."
+                msg = `Unfortunately, all the games available are full. We will pay you £${introInfo.pityPay} for your time.`
                 break
             case "gameLobbyTimedOut":
-                msg = "Unfortunately, there were NOT enough players for the game to start. We will pay you £0.10 for your time."
+                msg = `Unfortunately, there were NOT enough players for the game to start. We will pay you £${introInfo.pityPay} for your time.`
                 break
             case "playerEndedLobbyWait":
                 msg =

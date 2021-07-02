@@ -2,7 +2,7 @@ import React from "react"
 import { ConsentButton } from "meteor/empirica:core"
 import CenterDevWrapper from "../../wrappers/CenterDevWrapper"
 import { isMobile, isFirefox, isChrome } from 'react-device-detect'
-import { introInfo } from "./introInfo"
+import { introInfo } from "../introInfo"
 
 export default class Consent extends React.Component {
 	render() {

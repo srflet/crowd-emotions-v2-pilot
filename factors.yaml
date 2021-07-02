@@ -77,3 +77,8 @@ lobbyConfigs:
     timeoutInSeconds: 180
     timeoutStrategy: fail
     gameLobbyIds: []
+  - name: fail5min
+    timeoutType: lobby
+    timeoutInSeconds: 300
+    timeoutStrategy: fail
+    gameLobbyIds: []

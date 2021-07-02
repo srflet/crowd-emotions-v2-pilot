@@ -4,7 +4,7 @@ import React, { Component } from 'react'
 import CenterDevWrapper from "../../wrappers/CenterDevWrapper"
 import { isMobile, isFirefox, isChrome } from 'react-device-detect'
 import Consent from './Consent'
-import { introInfo } from './introInfo'
+import { introInfo } from '../introInfo'
 
 // Import the config from the db
 import { withTracker } from "meteor/react-meteor-data"

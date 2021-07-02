@@ -2,6 +2,7 @@ import Empirica from "meteor/empirica:core"
 import { render } from "react-dom"
 
 // Import components
+import WarningConsent from "./intro/consent/WarningConsent"
 import WaitingConsent from "./intro/consent/WaitingConsent"
 import Consent from "./intro/consent/Consent"
 import Lobby from "./intro/lobby/Lobby"
@@ -14,6 +15,7 @@ import ExitSurvey from "./exit/ExitSurvey"
 import Thanks from "./exit/Thanks"
 import Sorry from "./exit/Sorry"
 import WaitingThanks from "./exit/WaitingThanks"
+
 
 // Take out elements of the header:
 // Set the About Component you want to use for the About dialog (optional).
@@ -34,7 +36,7 @@ const isDev = false
 
 if (!isDev) {
 	// Set the Consent Component you want to present players (optional).
-	Empirica.consent(WaitingConsent)
+	Empirica.consent(WarningConsent)
 
 	// Introduction pages to show before they play the game (optional).
 	// At this point they have been assigned a treatment. You can return
