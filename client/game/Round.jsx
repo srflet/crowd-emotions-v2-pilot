@@ -34,11 +34,22 @@ export default class Round extends Component {
 	render() {
 		const { round, stage, player, game } = this.props
 
+		// const timeout = player.idle && player.get("player-timeout")
+		const timeout = player.get("player-timeout")
+		// if (timeout && !player.stage.submitted) {
+		// 	player.stage.submit()
+		// }
+
 		return (
 			<CenterDevWrapper {...this.props}>
 				<div className="round-holder">
 					<Timeline {...this.props} />
 					<div className="container">
+						{timeout &&
+							<p className="timeout-box">
+								You seem to be disengaged from the study. Because this is a group study, a player’s disengagement will delay the progress of the other {game.treatment.playerCount - 1} players. Please make sure you are responding to the stages.
+							</p>
+						}
 						{this.renderStage()}
 					</div>
 				</div>

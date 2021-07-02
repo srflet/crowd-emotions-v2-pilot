@@ -11,7 +11,22 @@ Empirica.onRoundStart((game, round) => { })
 
 // onStageStart is triggered before each stage starts.
 // It receives the same options as onRoundStart, and the stage that is starting.
-Empirica.onStageStart((game, round, stage) => { })
+Empirica.onStageStart((game, round, stage) => {
+
+    let timeoutCounter = 0
+    game.players.forEach(player => {
+        const timeout = player.get("player-timeout")
+        if (timeout) {
+            timeoutCounter++
+
+            if (!player.stage.submitted && timeoutCounter < game.treatment.playerCount) {
+                player.stage.submit()
+            }
+
+        }
+    })
+
+})
 
 // onStageEnd is triggered after each stage.
 // It receives the same options as onRoundEnd, and the stage that just ended.
@@ -19,7 +34,7 @@ Empirica.onStageEnd((game, round, stage) => {
 
     if (stage.name === "rating") {
 
-        game.players.map(player => {
+        game.players.forEach(player => {
             const rating = player.stage.get("rating") ?? player.get("ratings")[round.get("roundIndex")]
             player.stage.set("rating", rating)
         })
@@ -29,7 +44,16 @@ Empirica.onStageEnd((game, round, stage) => {
 
 // onRoundEnd is triggered after each round.
 // It receives the same options as onGameEnd, and the round that just ended.
-Empirica.onRoundEnd((game, round) => { })
+Empirica.onRoundEnd((game, round) => {
+    game.players.forEach(player => {
+        const rating = player.stage.get("rating") ?? player.get("ratings")[round.get("roundIndex")]
+        if (rating === "NA") {
+            player.set("player-timeout", true)
+        } else {
+            player.set("player-timeout", false)
+        }
+    })
+})
 
 // onGameEnd is triggered when the game ends.
 // It receives the same options as onGameStart.

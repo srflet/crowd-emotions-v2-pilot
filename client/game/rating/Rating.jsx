@@ -19,6 +19,8 @@ export default class Rating extends Component {
         ratings[round.get("roundIndex")] = value
         player.set("ratings", ratings)
         player.stage.set("rating", value)
+
+        player.set("player-timeout", false)
     }
 
     render() {
@@ -42,25 +44,25 @@ export default class Rating extends Component {
                 <p className="title">
                     <img src={path} alt="image of morphed face" />
                 </p>
+                <div className="my-slider">
+                    <Slider
+                        min={1}
+                        max={50}
+                        stepSize={1}
+                        labelValues={[1, 25, 50]}
+                        value={rating}
+                        onChange={this.handleChange}
+                        onRelease={this.handleRelease}
+                        showTrackFill={false}
+                    />
+                </div>
+                <p className="rating-labels"><span>neutral</span><span>very {stimConfig.emotion}</span></p>
+                <br />
 
                 {
                     player.stage.submitted
-                        ? <><br /><div className="title waiting-msg">Your rating has been submitted. Waiting{game.treatment.playerCount > 1 && " for the other players"}...</div></>
+                        ? <><div className="title waiting-msg">Your rating has been submitted. Waiting{game.treatment.playerCount > 1 && " for the other players"}...</div></>
                         : <>
-                            <div className="my-slider">
-                                <Slider
-                                    min={1}
-                                    max={50}
-                                    stepSize={1}
-                                    labelValues={[1, 25, 50]}
-                                    value={rating}
-                                    onChange={this.handleChange}
-                                    onRelease={this.handleRelease}
-                                    showTrackFill={false}
-                                />
-                            </div>
-                            <p className="rating-labels"><span>neutral</span><span>very {stimConfig.emotion}</span></p>
-                            <br />
                             <div className="flex-c">
                                 <button
                                     className="main-btn"
