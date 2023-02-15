@@ -16,13 +16,6 @@ export default class PracticeEnd extends Component {
               <u>Remember, the more accurate you are, the higher your bonus!</u>
             </strong>
           </p>
-          <p>
-            <strong>You are paired with 9 other players for this task.</strong>
-          </p>
-          <p>
-            This means you will be going through the rounds at the same pace as
-            other players.
-          </p>
         </div>
 
         <div>

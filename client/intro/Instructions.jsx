@@ -51,9 +51,11 @@ export default class Instructions extends Component {
                 ? "the AVERAGE EMOTION of this group of faces"
                 : "a feature of the visual image"}
               . For the example above, we will ask you{" "}
-              {condition === "emotions"
-                ? "“what is the average degree of anger in this group of faces?”"
-                : "“what is the percentage of blue dots in this image?”"}
+              <strong>
+                {condition === "emotions"
+                  ? "“what is the average degree of anger in this group of faces?”"
+                  : "“what is the percentage of blue dots in this image?”"}
+              </strong>
             </li>
             <li>
               To respond, you will have a slider where you can indicate your

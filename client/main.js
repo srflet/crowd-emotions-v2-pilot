@@ -28,14 +28,14 @@ Empirica.header(() => null)
 Empirica.newPlayer(NewPlayer)
 
 // Set the lobby (optional)
-Empirica.lobby(Lobby)
+Empirica.lobby()
 
 // Using isDev to help with quick testing
 const isDev = false
 
 if (!isDev) {
   // Set the Consent Component you want to present players (optional).
-  Empirica.consent(WarningConsent)
+  Empirica.consent(Consent)
 
   // Introduction pages to show before they play the game (optional).
   // At this point they have been assigned a treatment. You can return
@@ -67,7 +67,7 @@ Empirica.exitSteps((game, player) => {
   ) {
     return [Sorry]
   }
-  return [ExitSurvey, WaitingThanks]
+  return [ExitSurvey, Thanks]
 })
 
 // Start the app render tree.
