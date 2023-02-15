@@ -30,7 +30,7 @@ export default class WarningConsent extends Component {
                     <div className="container">
                         <div className="warning-consent">
                             <h3 className="title">Important Information</h3>
-                            <p><strong>The study lasts {introInfo.time}mins and pays between £{introInfo.flatPay} and £{introInfo.bonusPay} depending on your performance.</strong></p>
+                            <p><strong>The study lasts {introInfo.time}mins and pays between XXXX£{introInfo.flatPay} and XXXX£{introInfo.bonusPay} depending on your performance.</strong></p>
 
                             <p>This study involves groups of 10 participants. You will be given instructions before joining 9 other players in the lobby.</p>
                             <p>

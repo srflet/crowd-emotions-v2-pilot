@@ -16,7 +16,6 @@ import Thanks from "./exit/Thanks"
 import Sorry from "./exit/Sorry"
 import WaitingThanks from "./exit/WaitingThanks"
 
-
 // Take out elements of the header:
 // Set the About Component you want to use for the About dialog (optional).
 Empirica.about(null)
@@ -35,15 +34,15 @@ Empirica.lobby(Lobby)
 const isDev = false
 
 if (!isDev) {
-	// Set the Consent Component you want to present players (optional).
-	Empirica.consent(WarningConsent)
+  // Set the Consent Component you want to present players (optional).
+  Empirica.consent(WarningConsent)
 
-	// Introduction pages to show before they play the game (optional).
-	// At this point they have been assigned a treatment. You can return
-	// different instruction steps depending on the assigned treatment.
-	Empirica.introSteps((game, treatment) => {
-		return [ScreenSize, Instructions, Comprehension]
-	})
+  // Introduction pages to show before they play the game (optional).
+  // At this point they have been assigned a treatment. You can return
+  // different instruction steps depending on the assigned treatment.
+  Empirica.introSteps((game, treatment) => {
+    return [ScreenSize, Instructions, Comprehension]
+  })
 }
 
 // The Round component containing the game UI logic.
@@ -60,15 +59,15 @@ Empirica.round(Round)
 // If you don't return anything, or do not define this function, a default
 // exit screen will be shown.
 Empirica.exitSteps((game, player) => {
-	if (
-		!game ||
-		(player.exitStatus &&
-			player.exitStatus !== "finished" &&
-			player.exitReason !== "playerQuit")
-	) {
-		return [Sorry]
-	}
-	return [ExitSurvey, WaitingThanks]
+  if (
+    !game ||
+    (player.exitStatus &&
+      player.exitStatus !== "finished" &&
+      player.exitReason !== "playerQuit")
+  ) {
+    return [Sorry]
+  }
+  return [ExitSurvey, WaitingThanks]
 })
 
 // Start the app render tree.
@@ -76,5 +75,5 @@ Empirica.exitSteps((game, player) => {
 // Empirica.introSteps(), ...).
 // It is required and usually does not need changing.
 Meteor.startup(() => {
-	render(Empirica.routes(), document.getElementById("app"))
+  render(Empirica.routes(), document.getElementById("app"))
 })

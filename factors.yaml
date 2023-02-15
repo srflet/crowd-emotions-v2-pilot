@@ -19,8 +19,28 @@ treatments:
       - pJSLJrip9ipnBLGe9
       - caQGxk3X7ZcFbnj4R
       - 9n5zwjsTNEpXwZ9vy
+  - name: emotions 1player old
+    factorIds:
+      - pJSLJrip9ipnBLGe9
+      - 8BMSnStaudR8BiSdY
+      - PMyeZJudPj3jrqC5b
+  - name: numerical 1player old
+    factorIds:
+      - pJSLJrip9ipnBLGe9
+      - zKrPQ3RppnddhCFuJ
+      - 8BMSnStaudR8BiSdY
+  - name: emotions 1player 2r
+    factorIds:
+      - pJSLJrip9ipnBLGe9
+      - dZwMawk9Hjn6bxYXo
+      - PMyeZJudPj3jrqC5b
+  - name: numerical 1player 2r
+    factorIds:
+      - pJSLJrip9ipnBLGe9
+      - dZwMawk9Hjn6bxYXo
+      - zKrPQ3RppnddhCFuJ
 factorTypes:
-  - _id: GfQAYysNaku2uzsuE
+  - _id: skKHkmx3YAzyCPcKT
     name: playerCount
     description: The Number of players participating in the given game.
     required: true
@@ -41,7 +61,7 @@ factors:
   - _id: pJSLJrip9ipnBLGe9
     name: one
     value: 1
-    factorTypeId: GfQAYysNaku2uzsuE
+    factorTypeId: skKHkmx3YAzyCPcKT
   - _id: TaYNMYyEN4edFvdvK
     name: five
     value: 5
@@ -57,14 +77,30 @@ factors:
   - _id: 4Fh7F8W6eeXR6bXsD
     name: two
     value: 2
-    factorTypeId: GfQAYysNaku2uzsuE
+    factorTypeId: skKHkmx3YAzyCPcKT
   - _id: QbmC9g4sKGwgQR2xc
     name: ten
     value: 10
-    factorTypeId: GfQAYysNaku2uzsuE
+    factorTypeId: skKHkmx3YAzyCPcKT
   - _id: caQGxk3X7ZcFbnj4R
     name: thirty
     value: 30
+    factorTypeId: mcapRg7t8WvPj9Fgd
+  - _id: PMyeZJudPj3jrqC5b
+    name: emotions
+    value: emotions
+    factorTypeId: Zfvp6PRCPyE2hPs5k
+  - _id: zKrPQ3RppnddhCFuJ
+    name: numerical
+    value: numerical
+    factorTypeId: Zfvp6PRCPyE2hPs5k
+  - _id: 8BMSnStaudR8BiSdY
+    name: ten
+    value: 10
+    factorTypeId: mcapRg7t8WvPj9Fgd
+  - _id: dZwMawk9Hjn6bxYXo
+    name: two
+    value: 2
     factorTypeId: mcapRg7t8WvPj9Fgd
 lobbyConfigs:
   - name: neverfail

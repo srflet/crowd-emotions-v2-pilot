@@ -42,7 +42,7 @@ export default class Consent extends React.Component {
 
 					<h3>What will happen to me if I take part?</h3>
 					<p>
-						We kindly ask you to participate in an emotion recognition game where you estimate the emotionality of a group of faces. We will also ask you a few demographic questions. The entire study should take about {time} mins.
+						We kindly ask you to participate in a visual search study where you try to remember as much visual information as you possibly can in a short period of time. The entire study should take about {time} mins, and you will receive both a base pay and a performance-based compensation. 
 					</p>
 
 					<h3>What are the possible disadvantages and risks of taking part?</h3>
@@ -52,7 +52,7 @@ export default class Consent extends React.Component {
 
 					<h3>What are the possible benefits of taking part?</h3>
 					<p>
-						You will be compensated for you time. You will receive a base payment of £{flatPay} for completing the study and you may obtain a bonus based on your performance. Otherwise, there are no other direct benefits to you from participating in this research. Some potential benefits include learning more about research. We hope that, in the future, other people might benefit from this study through improved understanding of workplace interactions.
+						You will be compensated for you time. You will receive a base payment of XXX£{flatPay}XXX for completing the study and you may obtain a bonus based on your performance. Otherwise, there are no other direct benefits to you from participating in this research. Some potential benefits include learning more about research. We hope that, in the future, other people might benefit from this study through improved understanding of workplace interactions.
 					</p>
 
 					<h3>What if something goes wrong?</h3>

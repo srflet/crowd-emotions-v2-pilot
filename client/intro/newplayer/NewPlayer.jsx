@@ -1,56 +1,56 @@
-import React, { Component } from 'react'
-import CenterDevWrapper from '../../wrappers/CenterDevWrapper'
+import React, { Component } from "react"
+import CenterDevWrapper from "../../wrappers/CenterDevWrapper"
 
 export default class NewPlayer extends Component {
-    state = { id: "" }
+  state = { id: "" }
 
-    handleUpdate = event => {
-        const { value, name } = event.currentTarget
-        this.setState({ [name]: value })
-    }
+  handleUpdate = (event) => {
+    const { value, name } = event.currentTarget
+    this.setState({ [name]: value })
+  }
 
-    handleSubmit = event => {
-        event.preventDefault()
+  handleSubmit = (event) => {
+    event.preventDefault()
 
-        const { handleNewPlayer } = this.props
-        const { id } = this.state
-        handleNewPlayer(id)
-    }
+    const { handleNewPlayer } = this.props
+    const { id } = this.state
+    handleNewPlayer(id)
+  }
 
-    render() {
-        const { id } = this.state
+  render() {
+    const { id } = this.state
 
-        return (
-            <CenterDevWrapper {...this.props} >
-                <div className="container">
-                    <form className="flex-col" onSubmit={this.handleSubmit}>
-                        <h1>Identification</h1>
+    return (
+      <CenterDevWrapper {...this.props}>
+        <div className="container">
+          <form className="flex-col" onSubmit={this.handleSubmit}>
+            <h1>Identification</h1>
 
-                        <p>
-                            Please enter your id:
-                        </p>
+            <p>Please enter your Prolific ID:</p>
 
-                        <p>
-                            <input
-                                dir="auto"
-                                type="text"
-                                name="id"
-                                id="id"
-                                value={id}
-                                onChange={this.handleUpdate}
-                                required
-                                autoComplete="off"
-                            />
-                        </p>
+            <p>
+              <input
+                dir="auto"
+                type="text"
+                name="id"
+                id="id"
+                value={id}
+                onChange={this.handleUpdate}
+                required
+                autoComplete="off"
+              />
+            </p>
 
-                        <br />
+            <br />
 
-                        <p>
-                            <button className="main-btn" type="submit">Submit</button>
-                        </p>
-                    </form>
-                </div>
-            </CenterDevWrapper>
-        )
-    }
+            <p>
+              <button className="main-btn" type="submit">
+                Submit
+              </button>
+            </p>
+          </form>
+        </div>
+      </CenterDevWrapper>
+    )
+  }
 }
