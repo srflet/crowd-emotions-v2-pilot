@@ -118,8 +118,6 @@ Empirica.gameInit((game) => {
         imgMean = mean
       }
 
-      trueAnswers.push(imgMean)
-
       const stimuliPaths = imgIndexes.map(
         (i) => "stimuli/faces/" + person + i + ".jpg"
       )

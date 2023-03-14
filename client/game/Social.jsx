@@ -26,7 +26,7 @@ export default class Social extends Component {
 
     let playerRating = player.get("ratings")[ratingIndex]
 
-    let fakeRating = player.get("fakeRatings")[ratingIndex]
+    let fakeRating = player.get("fakeRatings")[ratingIndex] //to be used if a player did not submit a rating
     if (playerRating === "NA") {
       if (fakeRating === "NA") {
         const config =
@@ -42,7 +42,7 @@ export default class Social extends Component {
         }
 
         const multiplier = Math.random() > 0.5 ? 1 : -1
-        const value = Math.floor(Math.random() * 6)
+        const value = Math.floor(Math.random() * 10)
         fakeRating = mean + multiplier * value
 
         let fakeRatings = player.get("fakeRatings")
@@ -66,15 +66,30 @@ export default class Social extends Component {
       }
     }
 
+    const truth = game.get("trueAnswers")[ratingIndex - 1] / 2
+    const error = useRating - truth
+    const config =
+      game.treatment.condition === "numerical" ? "estimateConfig" : "stimConfig"
+    const targetMean =
+      error < 0
+        ? useRating - Math.floor(game.treatment.socialFactor * error)
+        : useRating - Math.ceil(game.treatment.socialFactor * error)
+    console.log("true answers:", game.get("trueAnswers"))
     console.log(
+      `rating index: ${ratingIndex}`,
       `fakeRating: ${fakeRating}`,
       `playerRating: ${playerRating}`,
-      `useRating: ${useRating}`
+      `useRating: ${useRating}`,
+      `truth: ${truth}`,
+      `target mean: ${targetMean}`,
+      `error: ${error}`
     )
+
+    console.log(round.get(config))
     const otherRatings =
       useRating < 46
-        ? socialLookupTable[playerRating + 3]
-        : socialLookupTable[48]
+        ? socialLookupTable[targetMean]
+        : socialLookupTable[targetMean]
     console.log(playerRating)
     console.log(otherRatings)
     player.stage.set("otherRatings", otherRatings)

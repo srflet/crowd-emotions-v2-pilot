@@ -1,7 +1,7 @@
 export const introInfo = {
-  flatPay: "8.00",
-  bonusPay: "12.00",
+  flatPay: "2.00",
+  bonusPay: "5.00",
   pityPay: "0.42",
-  time: "15",
+  time: "10",
   timeout: "5",
 }

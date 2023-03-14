@@ -11,18 +11,25 @@ export default class Thanks extends React.Component {
     }
 
     const ratings = player.get("ratings")
-    const trueAnswers = game.get("trueAnswers")
+    let trueAnswers = game.get("trueAnswers")
+    const { condition } = game.treatment
+    if (condition === "emotions") {
+      trueAnswers = trueAnswers.map((ans) => {
+        return Math.floor(ans / 2)
+      })
+    }
 
     const totalError = trueAnswers
       .map((trueAnswer, index) => {
-        return Math.abs(trueAnswer - ratings[index])
+        return Math.abs(trueAnswer - ratings[index + 1])
       })
       .filter((val) => !isNaN(val))
       .reduce((total, item) => (total += item), 0)
 
     const averageError = (
       totalError /
-      trueAnswers.filter((trueAnswer, index) => ratings[index] !== "NA").length
+      trueAnswers.filter((trueAnswer, index) => ratings[index + 1] !== "NA")
+        .length
     ).toFixed(2)
 
     return (
@@ -43,19 +50,20 @@ export default class Thanks extends React.Component {
           <p>Here is a breakdown per round:</p>
           <div className="feedbackHolder">
             {trueAnswers.map((trueAnswer, index) => {
-              if (index > 0) {
+              if (index >= 0) {
                 return (
                   <div
                     key={index}
                     className={(index - 1) % 5 === 0 ? "firstRound" : ""}
                   >
                     <p>
-                      <u>Round {index}</u>
+                      <u>Round {index + 1}</u>
                     </p>
                     <p>True Answer: {trueAnswer}</p>
-                    <p>Your Answer: {ratings[index]}</p>
+                    <p>Your Answer: {ratings[index + 1]}</p>
                     <p>
-                      Absolute error: {Math.abs(trueAnswer - ratings[index])}
+                      Absolute error:{" "}
+                      {Math.abs(trueAnswer - ratings[index + 1])}
                     </p>
                   </div>
                 )
