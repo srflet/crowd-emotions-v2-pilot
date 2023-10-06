@@ -28,7 +28,7 @@ Empirica.header(() => null)
 Empirica.newPlayer(NewPlayer)
 
 // Set the lobby (optional)
-Empirica.lobby()
+Empirica.lobby(Lobby)
 
 // Using isDev to help with quick testing
 const isDev = false

@@ -51,8 +51,8 @@ export default class Round extends Component {
               <p className="timeout-box">
                 You seem to be disengaged from the study. Because this is a
                 group study, a player’s disengagement will delay the progress of
-                the other {game.treatment.playerCount - 1} players. Please make
-                sure you are responding to the stages.
+                the other 9 players. Please make sure you are responding to the
+                stages.
               </p>
             )}
             {this.renderStage()}

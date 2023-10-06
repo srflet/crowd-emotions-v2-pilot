@@ -15,18 +15,27 @@ export default class Social extends Component {
   }
   componentDidMount() {
     const { player, round, game } = this.props
+    // console.log("firing mount")
     const ratingIndex = round.get("roundIndex")
+    // console.log(`ratingIndex: ${ratingIndex}`)
     let roundUp = player.get("roundRoundUp")[ratingIndex]
+    console.log(`roundUp: ${roundUp}`)
     if (roundUp === "NA") {
       roundUp = Math.random() > 0.5
+      // console.log(`roundUp: ${roundUp}`)
       let roundUpValues = player.get("roundRoundUp")
+      // console.log(`roundUpValues: ${roundUpValues}`)
       roundUpValues[ratingIndex] = roundUp
+      // console.log(`roundUpValues: ${roundUpValues}`)
       player.set("roundUpValues", roundUpValues)
     }
 
     let playerRating = player.get("ratings")[ratingIndex]
+    // console.log(`playerRating: ${playerRating}`)
 
-    let fakeRating = player.get("fakeRatings")[ratingIndex] //to be used if a player did not submit a rating
+    let fakeRating = player.get("fakeRatings")[ratingIndex]
+    // console.log(`fakeRating: ${fakeRating}`)
+    //to be used if a player did not submit a rating
     if (playerRating === "NA") {
       if (fakeRating === "NA") {
         const config =
@@ -47,17 +56,22 @@ export default class Social extends Component {
 
         let fakeRatings = player.get("fakeRatings")
         fakeRatings[ratingIndex] = fakeRating
-        console.log(
-          `mean: ${mean}`,
-          `value: ${value}`,
-          `fakeRating: ${fakeRating}`
-        )
+        // console.log(
+        //   `mean: ${mean}`,
+        //   `value: ${value}`,
+        //   `multiplier: ${multiplier}`,
+        //   `fakeRating: ${fakeRating}`
+        // )
       }
     }
 
     let useRating = playerRating === "NA" ? fakeRating : playerRating
+    // console.log(
+    //   "🚀 ~ file: Social.jsx:68 ~ Social ~ componentDidMount ~ useRating:",
+    //   useRating
+    // )
 
-    console.log(`roundUp: ${roundUp}`)
+    // console.log(`roundUp: ${roundUp}`)
     if (game.treatment.condition === "numerical") {
       if (useRating % 2) {
         useRating = roundUp ? (useRating + 1) / 2 : Math.floor(useRating / 2)
@@ -66,33 +80,52 @@ export default class Social extends Component {
       }
     }
 
+    // console.log(
+    //   "🚀 ~ file: Social.jsx:83 ~ Social ~ componentDidMount ~ useRating:",
+    //   useRating
+    // )
+
     const truth = game.get("trueAnswers")[ratingIndex - 1] / 2
+    // console.log(
+    //   "🚀 ~ file: Social.jsx:88 ~ Social ~ componentDidMount ~ truth:",
+    //   truth
+    // )
     const error = useRating - truth
+    // console.log(
+    //   "🚀 ~ file: Social.jsx:93 ~ Social ~ componentDidMount ~ error:",
+    //   error
+    // )
     const config =
       game.treatment.condition === "numerical" ? "estimateConfig" : "stimConfig"
     const targetMean =
       error < 0
         ? useRating - Math.floor(game.treatment.socialFactor * error)
         : useRating - Math.ceil(game.treatment.socialFactor * error)
-    console.log("true answers:", game.get("trueAnswers"))
-    console.log(
-      `rating index: ${ratingIndex}`,
-      `fakeRating: ${fakeRating}`,
-      `playerRating: ${playerRating}`,
-      `useRating: ${useRating}`,
-      `truth: ${truth}`,
-      `target mean: ${targetMean}`,
-      `error: ${error}`
-    )
 
-    console.log(round.get(config))
+    // console.log(
+    //   "🚀 ~ file: Social.jsx:105 ~ Social ~ componentDidMount ~ targetMean:",
+    //   targetMean
+    // )
+    // console.log("true answers:", game.get("trueAnswers"))
+    // console.log(
+    //   `rating index: ${ratingIndex}`,
+    //   `fakeRating: ${fakeRating}`,
+    //   `playerRating: ${playerRating}`,
+    //   `useRating: ${useRating}`,
+    //   `truth: ${truth}`,
+    //   `target mean: ${targetMean}`,
+    //   `error: ${error}`
+    // )
+
+    // console.log(round.get(config))
     const otherRatings =
       useRating < 46
         ? socialLookupTable[targetMean]
         : socialLookupTable[targetMean]
-    console.log(playerRating)
-    console.log(otherRatings)
+    // console.log(playerRating)
+    // console.log(otherRatings)
     player.stage.set("otherRatings", otherRatings)
+    player.stage.set("socialMean", targetMean)
   }
 
   handleChange = (value) => {
@@ -169,7 +202,9 @@ export default class Social extends Component {
               ratings of the other players:
             </strong>
           </p>
-          <p className="centred">{mean}</p>
+          {game.treatment.condition === "numerical" && (
+            <p className="centred">{mean}</p>
+          )}
           {game.treatment.condition === "emotions" && (
             <img src={path} alt="image of morphed face" />
           )}
@@ -201,9 +236,23 @@ export default class Social extends Component {
         </div>
         <br />
         <p>
-          On a scale of 1-10, how confident do you feel that your estimate was
-          more accurate than the estimates of the other 9 people in the game?
+          On a scale of 1-10, how do you rate the accuracy of your estimate
+          compared to the estimates of the other 9 people in the game.
         </p>
+        <ul>
+          <li>
+            {" "}
+            <strong>1 = My estimate is far less accurate than the group</strong>
+          </li>
+          <li>
+            <strong>
+              10 = My estimate is far more accurate than the group
+            </strong>
+          </li>
+        </ul>
+        {/* <p></p>
+        <p></p> */}
+        <br />
 
         <div className="my-slider">
           <Slider
@@ -219,8 +268,8 @@ export default class Social extends Component {
           />
         </div>
         <p className="rating-labels">
-          <span>(Not confident at all)</span>
-          <span>(Extremely confident)</span>
+          <span>Far less accurate</span>
+          <span>Far more accurate</span>
         </p>
         <br />
         {player.stage.submitted ? (

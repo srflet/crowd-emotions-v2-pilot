@@ -10,7 +10,7 @@ export default class Instructions extends Component {
     const imgPath =
       condition === "emotions"
         ? "instructions/instructions3a.png"
-        : "instructions/instructions3b.png"
+        : "instructions/instructions3c.jpg"
 
     return (
       <CenterDevWrapper {...this.props}>
@@ -54,7 +54,7 @@ export default class Instructions extends Component {
               <strong>
                 {condition === "emotions"
                   ? "“what is the average degree of anger in this group of faces?”"
-                  : "“what is the percentage of blue dots in this image?”"}
+                  : "“what is the percentage of squares in this image?”"}
               </strong>
             </li>
             <li>

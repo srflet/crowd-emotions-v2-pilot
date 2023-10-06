@@ -53,9 +53,7 @@ class StimulusBuilder extends Component {
         ) : (
           <p>
             Estimate the percentage of{" "}
-            <strong>{config.colour.toUpperCase()}</strong>{" "}
-            {config.stimType === "practice" ? <>dots</> : config.stimType}{" "}
-            below:
+            <strong>{config.stimType.toUpperCase()}</strong> below:
           </p>
         )}
         <div

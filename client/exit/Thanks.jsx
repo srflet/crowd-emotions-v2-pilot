@@ -54,7 +54,7 @@ export default class Thanks extends React.Component {
                 return (
                   <div
                     key={index}
-                    className={(index - 1) % 5 === 0 ? "firstRound" : ""}
+                    className={index % 5 === 0 ? "firstRound" : ""}
                   >
                     <p>
                       <u>Round {index + 1}</u>
@@ -76,7 +76,7 @@ export default class Thanks extends React.Component {
               className="main-btn"
               onClick={() => {
                 window.location =
-                  "https://app.prolific.co/submissions/complete?cc=CY2CZHSV"
+                  "https://app.prolific.co/submissions/complete?cc=C9A40DQL"
               }}
             >
               Complete study on Prolific

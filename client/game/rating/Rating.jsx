@@ -74,9 +74,8 @@ export default class Rating extends Component {
         ) : (
           <p className="title">
             <strong>
-              What percentage of the{" "}
-              {config.stimType === "practice" ? <>dots</> : config.stimType}{" "}
-              were <strong>{config.colour.toUpperCase()}</strong>?
+              What percentage of the shapes were{" "}
+              <strong>{config.stimType.toUpperCase()}</strong>?
             </strong>
           </p>
         )}

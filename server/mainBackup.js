@@ -5,10 +5,9 @@ import "./callbacks.js"
 import { estimateDataObject } from "./constants.js"
 import { stimuliLookup } from "../shared/api/constants.js" // Import the configs
 import { Configs } from "../shared/api/collectionAdminGlobalConfigs.js"
-import { emotionsConfigs } from "./constants.js"
 
 // Importing helper functions for randomness
-import { choice, popChoice, shuffle } from "./helper-functions/random"
+import { choice, popChoice, shuffle } from "./helper-functions/random.js"
 
 const path = require("path")
 const fs = require("fs")
@@ -66,54 +65,130 @@ Empirica.gameInit((game) => {
   const numericalStimFiles = shuffle([...newStimFiles]).filter((file) => {
     return file.split("-")[0] !== "test"
   })
-
-  let trueAnswers = []
-
-  if (game.treatment.condition === "numerical") {
-    trueAnswers = numericalStimFiles.map((file) => {
-      return parseInt(file.split("-")[0])
-    })
-  }
-
-  const practiceConfigs = emotionsConfigs[0]
-
-  const gameConfigsArray = shuffle([
-    ...emotionsConfigs.filter((_config) => !_config.isPractice),
-  ])
-
-  console.log(`practiceConfigs`, practiceConfigs)
-
-  console.log("gameConfigsArray", gameConfigsArray)
-  console.log(`length of: ${gameConfigsArray.length}`)
-
-  // gameConfigsArray = shuffle([...gameConfigsArray])
+  const trueAnswers = numericalStimFiles.map((file) => {
+    return parseInt(file.split("-")[0])
+  })
 
   console.log(`line#71 true answers: ${trueAnswers}`)
   _.times(game.treatment.nRounds + 1, (i) => {
+    let round
+
     // Select the stimuli for the round EMOTIONS
     if (game.treatment.condition === "emotions") {
+      const personList = ["A", "B", "C", "D"]
+      // const emotionList = ["sad", "happy", "angry"]
+      const emotionList = ["happy", "angry"]
+      const emotionAdjectives = {
+        sad: "sadness",
+        happy: "happiness",
+        angry: "anger",
+      }
+
+      const emotionRange = {
+        sad: [1, 50],
+        happy: [51, 100],
+        angry: [101, 150],
+      }
+
+      const person = choice(personList)
+      const emotion = i % 2 ? emotionList[0] : emotionList[1]
+      const emotionAdj = emotionAdjectives[emotion]
+      const range = emotionRange[emotion]
+
+      const imgArraySize = _.random(8, 12)
+
+      // console.log(`Line #109| imgArraySize: ${imgArraySize}`)
+
+      let mean
+      let imgValues
+      let imgIndexes
+      let imgMean
+      if (i === 0) {
+        imgIndexes = [...Array(imgArraySize).keys()].map((i) =>
+          _.random(range[0], range[1])
+        )
+        imgValues = imgIndexes.map((i) => i - (range[0] - 1))
+
+        imgMean = Math.round(
+          imgValues.reduce((total, item) => (total += item), 0) /
+            imgValues.length
+        )
+      } else {
+        mean = trueAnswers[i - 1] / 2
+        imgValues = stimuliLookup[mean][imgArraySize]
+        console.log(`Line #103| stim values: ${imgValues}`)
+        imgIndexes = imgValues.map((val) => val + (range[0] - 1))
+        console.log(`Line #103| stim indexes: ${imgIndexes}`)
+        imgMean = mean
+      }
+
+      const stimuliPaths = imgIndexes.map(
+        (i) => "stimuli/faces/" + person + i + ".jpg"
+      )
+
+      const arrayStyles = imgValues.map((value) => {
+        // calculate size and the positions
+        const width = 141 * 0.75
+        const height = 181 * 0.75
+        const left = `calc(50% - ${width / 2}px ${
+          _.random(0, 1) === 1 ? "+" : "-"
+        } ${_.random(0, 20)}px)`
+        const top = `calc(50% - ${height / 2}px ${
+          _.random(0, 1) === 1 ? "+" : "-"
+        } ${_.random(0, 15)}px)`
+
+        console.log(`\narrayStyles round ${i}: `)
+        console.log(
+          `{\nwidth: ${width},\nheight: ${height},\nleft: ${left},\ntop: ${top}}`
+        )
+        return {
+          width: `${width}px`,
+          height: `${height}px`,
+          left: left,
+          top: top,
+        }
+      })
+
       // console.log(`---------estimate object----------`)
       // console.log(estimateDataObject)
       // console.log(`---------selected estimate data----------`)
       // console.log(estimateDataObject[i])
 
       // Create the round and stages
-      if (i === 0) {
-        round = game.addRound({
-          data: {
-            roundIndex: i,
-            ...practiceConfigs,
+      round = game.addRound({
+        data: {
+          roundIndex: i,
+          isPractice: i === 0,
+          stimConfig: {
+            person,
+            emotion,
+            emotionAdj,
+            range,
+            imgArraySize,
+            imgIndexes,
+            imgValues,
+            imgMean,
+            stimuliPaths,
           },
-        })
-      } else {
-        trueAnswers.push(gameConfigsArray[i - 1].stimConfig.imgMean * 2)
-        round = game.addRound({
-          data: {
-            roundIndex: i,
-            ...gameConfigsArray[i - 1],
-          },
-        })
-      }
+          arrayStyles,
+        },
+      })
+
+      console.log("\n.....round data......")
+      console.log(`roundIndex: ${i}`)
+      console.log(`isPractice: ${i === 0}`)
+      console.log("stimconfig: {")
+      console.log(`person: ${person}`)
+      console.log(`emotion: ${emotion}`)
+      console.log(`emotionAdj: ${emotionAdj}`)
+      console.log(`range: ${range}`)
+      console.log(`imgArraySize: ${imgArraySize}`)
+      console.log(`imgIndexes: ${imgIndexes}`)
+      console.log(`imgValues: ${imgValues}`)
+      console.log(`imgMean: ${imgMean}`)
+      console.log(`stimuliPaths: ${stimuliPaths}`)
+      console.log("}")
+      console.log(`arrayStyles: ${arrayStyles}`)
     }
 
     if (game.treatment.condition === "numerical") {
@@ -161,7 +236,7 @@ Empirica.gameInit((game) => {
     round.addStage({
       name: "rating",
       displayName: "Rating",
-      durationInSeconds: isDev ? 9999 : 15, //30
+      durationInSeconds: isDev ? 9999 : 100000,
     })
 
     // if (game.treatment.condition === "numerical") {
@@ -177,7 +252,7 @@ Empirica.gameInit((game) => {
       round.addStage({
         name: "social",
         displayName: "Social",
-        durationInSeconds: isDev ? 9999 : 20, //20
+        durationInSeconds: isDev ? 9999 : 3000, //30
       })
     }
 
@@ -192,7 +267,7 @@ Empirica.gameInit((game) => {
     round.addStage({
       name: "rating",
       displayName: "Rating",
-      durationInSeconds: isDev ? 9999 : 15, //15
+      durationInSeconds: isDev ? 9999 : 15,
     })
 
     // if (game.treatment.condition === "numerical") {
@@ -208,7 +283,7 @@ Empirica.gameInit((game) => {
       round.addStage({
         name: "practiceEnd",
         displayName: "End of Practice Round",
-        durationInSeconds: isDev ? 9999 : 30, //40,
+        durationInSeconds: isDev ? 9999 : 40, //40,
       })
     }
   })

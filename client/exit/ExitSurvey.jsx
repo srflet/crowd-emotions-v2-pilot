@@ -39,14 +39,19 @@ export default class ExitSurvey extends Component {
           <h2>Exit Survey</h2>
           <form onSubmit={this.handleSubmit}>
             <p>Please indicate your gender</p>
-            <input
-              type="text"
+            <select
+              type="drop"
               name="gender"
               value={answers.gender}
               onChange={this.handleChange}
               className="main-input"
               required
-            />
+            >
+              <option value="NA">---Please select---</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="other">Other</option>
+            </select>
             <br />
             <br />
 
